@@ -1,4 +1,7 @@
-package util;
+package core;
+
+import java.util.regex.Pattern;
+import java.lang.IllegalArgumentException;
 
 public class Student {
     private String fullName, id;
@@ -24,7 +27,7 @@ public class Student {
             this.id = id.toUpperCase().replaceAll("[^A-Z]","");
         }
         else {
-            throw new Exception("Invalid ID Input"); // TODO make an InvalidIDError
+            throw new IllegalArgumentException("Invalid ID Input"); // TODO make an InvalidIDError
         }
     }
 
