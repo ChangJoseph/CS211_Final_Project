@@ -5,7 +5,7 @@ import java.io.FileReader;
 
 public class BasicJsonManager {
 
-    private File jsonFile;
+    private File jsonFile; // The file name should be the Student hashCode() output
 
     /**
      * Default constructor used for logging and testing purposes
@@ -31,9 +31,8 @@ public class BasicJsonManager {
      * @return content of the file
      */
     public String getFileContent() {
-        FileReader reader;
+        FileReader reader = new FileReader(jsonFile);;
         try {
-            reader = new FileReader(jsonFile);
             StringBuilder output = new StringBuilder();
             int character = reader.read();
             for(; character != -1;character = reader.read()) {
@@ -48,6 +47,7 @@ public class BasicJsonManager {
         finally {
             reader.close();
         }
+        return "***Error***";
         
     }
     /**
