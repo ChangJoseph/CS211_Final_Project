@@ -1,7 +1,10 @@
 package util;
 
 import java.io.File;
+// import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class BasicJsonManager {
 
@@ -11,7 +14,7 @@ public class BasicJsonManager {
      * Default constructor used for logging and testing purposes
      */
     public BasicJsonManager() {
-        this("./test.json");
+        this(new File("./test.json"));
     }
     /**
      * Main constructor that takes in and instantiates a file
@@ -20,7 +23,7 @@ public class BasicJsonManager {
     public BasicJsonManager(File file) {
         // If the file extension is not .json
         if (!this.getExtensionString(file.getName()).equals("json")) {
-            throw new Exception(); // TODO make an exception for wrong extension type
+            throw new IllegalArgumentException(); // TODO make an exception for wrong extension type
         } 
         this.jsonFile = file;
     }
@@ -31,21 +34,23 @@ public class BasicJsonManager {
      * @return content of the file
      */
     public String getFileContent() {
-        FileReader reader = new FileReader(jsonFile);;
         try {
-            StringBuilder output = new StringBuilder();
-            int character = reader.read();
-            for(; character != -1;character = reader.read()) {
-                output.append((char)character);
+            FileReader reader = new FileReader(jsonFile);
+            try {
+                StringBuilder output = new StringBuilder();
+                int character = reader.read();
+                for(; character != -1;character = reader.read()) {
+                    output.append((char)character);
+                }
+                return output.toString();
             }
-            return output.toString();
+            finally {
+                reader.close();
+            }
         }
-        catch (OutOfMemoryError e) {
-            System.err.println(e);
-            // e.printStackTrace();
-        }
-        finally {
-            reader.close();
+        catch (IOException e) {
+            System.err.println("getFileContent() IOException");
+            e.printStackTrace();
         }
         return "***Error***";
         
@@ -56,25 +61,26 @@ public class BasicJsonManager {
      * @param append set true for append and false for overwrite
      */
     public void addFileContent(String content, boolean append) {
-        FileWriter writer;
         try {
-            writer = new FileWriter(file, append);
-            writer.write(content);
+            FileWriter writer = new FileWriter(jsonFile, append);
+            try {
+                writer.write(content);
+            }
+            finally {
+                writer.close();
+            }
         }
         catch (IOException e) {
-            System.err.println(e);
-            // e.printStackTrace();
-        }
-        finally {
-            writer.close();
+            System.err.println("addFileContent() IOException");
+            e.printStackTrace();
         }
     }
 
     public String fileName() {
-        return file.getName();
+        return jsonFile.getName();
     }
     public String filePath() {
-        return file.getPath();
+        return jsonFile.getPath();
     }
 
 
