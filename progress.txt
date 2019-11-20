@@ -1,0 +1,22 @@
+Most of the planning and such are already in the readme and the github project kanban so I will put general information here
+
+What has been accomplished so far
+Chang - Planning out class relationships, folder structure, basic shell classes
+Martinez - Code supervision/revisions, Scale calculator in the core package
+Shin - Content brainstorming, heirarchical relationship management, 
+
+In Progress:
+Chang - Util package: Json reader/writer, Json parser, Student Class
+Martinez - Test classes, Continuous bug squashing / code supervision
+Shin - Json parser, Basic integration package classes, 
+
+To Do:
+- Create More, Thorough Test Classes for everything
+- Create integration base manager that combines core classes and util classes with methods
+- Create integration UI class using either java swing ui or a console I/O ui that utilizes the integration base manager
+- Javadoc and general documentation
+- Clean up code for readability
+
+Currently, our code can take multiple grades and calculate a scaled percentage based on a list of grades given as well as a percentage scale
+We can also create multiple types of classes to do basic functions like: add, subtract, multiply, or divide; calculate a float gpa from a double; calculate a lettergrade from a double
+Lastly, we can create a json reader/writer that can read and write json files, though the functions are a bit limited at the moment; it can only read what the json files have as a string and manipulate its contents
