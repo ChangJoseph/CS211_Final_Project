@@ -30,11 +30,11 @@ Our JUnit tests are located in ./test/package_name/name.java
 We split up the work evenly relative to what we thought we could do.
 
 ### 3.1 Chang, Joseph
-something
+Planning, Json Classes and Java Swing
 ### 3.2 Martinez, Hannah
-something
+Test Classes, Scale Calculator and Bug Squashing
 ### 3.3 Shin, Yeoungmin
-something
+Brainstorming, Core Classes and Util Classes
 
 
 ## 4. Conclusion
