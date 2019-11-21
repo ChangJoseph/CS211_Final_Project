@@ -3,16 +3,18 @@ package core;
 public class GPACalculator extends Calculator {
 
     private double percentage;
-
+    private char letterGrade;
+    
     public GPACalculator(double percentage) {
         this.percentage = percentage;
     }
 
     @Override
     public abstract float calculate() {
-
+        this.letterGrade = calculate(percentage);
     }
-    protected char CalcLetterGrade(double percentage) {
+
+    protected char calculate(double percentage) {
         if (percentage => 4.00) {
             return A;
         }
