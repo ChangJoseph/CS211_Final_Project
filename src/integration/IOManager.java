@@ -1,23 +1,30 @@
 package integration;
 
 public class IOManager {
-    private InputStreamReader isr;
-    private BufferedReader br;
+    private Scanner userInput;
 
-    public IOManager(InputStreamReader isr, BufferedReader br) {
-        this.isr = isr;
-        this.br = br;
+    public IOManager() {
+        this.userInput = Scanner(System.in);
     }
 
     public Student start() {
+        String nameHolder;
+        String idHolder;
+        String dobHolder;
+
         try {
-            System.out.println("What is you name: ");
-            br.getLine;
+            System.out.println("What is your Full Name?: ");
+            nameHolder = userInput.nextLine;
+            System.out.println("What is you ID?: ");
+            infoHolder = userInput.nextLine();
+            System.out.println("What is your D.O.B?: ");
+            dobHolder = userInput.nextLine();
+            return new Student(nameHolder, idHolder, dobHolder);
         }
         catch (IOException ioe) {
             System.out.println("IO Exception raised!");
         }
-
+        return new Student();
     }
 
     public void close() {
