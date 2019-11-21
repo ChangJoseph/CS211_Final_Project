@@ -27,7 +27,7 @@ public class Student {
             this.id = id.toUpperCase().replaceAll("[^A-Z]","");
         }
         else {
-            throw new IllegalArgumentException("Invalid ID Input"); // TODO make an InvalidIDError
+            throw new InvalidIDException("Invalid ID Input");
         }
     }
 
