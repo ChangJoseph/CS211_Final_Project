@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Scanner;
 
 public class BasicJsonManager {
 
@@ -54,6 +55,21 @@ public class BasicJsonManager {
         }
         return "***Error***";
         
+    }
+    /**
+     * Gets current instance's file's scanner
+     * @return read above
+     */
+    public Scanner getFileScanner() {
+        return this.getStringScanner(getFileContent());
+    }
+    /**
+     * Gets a scanner for a string
+     * @return read above
+     */
+    private Scanner getStringScanner(String s) {
+        Scanner scan = new Scanner(s);
+        return scan;
     }
     /**
      * Writes to the json file whether it be append or overwrite
