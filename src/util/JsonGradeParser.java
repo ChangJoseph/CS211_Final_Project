@@ -16,7 +16,7 @@ public class JsonGradeParser {
      * Parses the json file into 
      * @return
      */
-    public List<Double> parse() {
+    public List<List<Double>> parse() {
         List<List<Double>> output = new ArrayList<List<Double>>();
         Scanner scan = jsonManager.getFileScanner();
 
