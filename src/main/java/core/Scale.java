@@ -1,5 +1,7 @@
 package core;
 
+import exception.ScaleException;
+
 import java.util.ArrayList;
 
 public class Scale extends Calculator {
@@ -11,6 +13,7 @@ public class Scale extends Calculator {
     }
 
     public Scale() {
+        super();
         percentage = 0;
     }
 
@@ -42,7 +45,7 @@ public class Scale extends Calculator {
     }
 
     @Override
-    public double calculate() throws ScaleException {
+    public float calculate() throws ScaleException {
         int gradesSize = grades.size();
         if (gradesSize <= 0) {
             throw new ScaleException("Grade Array is Empty!");
@@ -55,7 +58,7 @@ public class Scale extends Calculator {
             double calc = total/gradesSize;
             calc *= percentage * 100;
             calc = Math.round(calc *100.0) / 100.0;
-            return calc;
+            return (float) calc;
         }
     }
 
