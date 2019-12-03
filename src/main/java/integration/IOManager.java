@@ -1,5 +1,7 @@
 package integration;
 
+import java.util.Scanner;
+
 public class IOManager {
     private Scanner userInput;
 
