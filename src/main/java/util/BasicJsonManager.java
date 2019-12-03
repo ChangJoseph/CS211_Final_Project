@@ -1,5 +1,9 @@
 package util;
 
+import core.Student;
+import core.StudentMagic;
+import exception.IncorrectExtensionException;
+
 import java.util.List;
 import java.io.File;
 // import java.io.FileNotFoundException;
@@ -25,6 +29,7 @@ public class BasicJsonManager {
     public BasicJsonManager(File file) {
         // If the file extension is not .json
         if (!this.getExtensionString(file.getName()).equals("json")) {
+            System.out.println(getExtensionString(file.getName()));
             throw new IllegalArgumentException(); // TODO make an exception for wrong extension type
         } 
         this.jsonFile = file;
@@ -107,21 +112,24 @@ public class BasicJsonManager {
      * @return the extension name in String format
      */
     private String getExtensionString(String fileName) {
-        String[] splitName = fileName.split("."); // Splits fileName by '.' and makes an array
-        return splitName[splitName.length-1]; // Returns last element of split fileName
+        if (!fileName.contains(".")) {
+            throw new IncorrectExtensionException("File does not have an extension type.");
+        }
+
+        return fileName.substring(fileName.indexOf(".")+1); // Returns last element of split fileName
     }
 
 
     // Integration Methods
 
-    public List<List<Double>> getListOfScaleAndGrades() {
+    public StudentMagic getListOfScaleAndGrades() {
         JsonGradeParser parser = new JsonGradeParser(jsonFile);
         return parser.parse();
     }
 
-    public void setListOfScaleAndGrades(List<List<Double>> lists) {
+    public void setListOfScaleAndGrades(StudentMagic magic) {
         JsonGradeParser parser = new JsonGradeParser(jsonFile);
-        parser.overwrite(lists);
+        parser.overwrite(magic);
     }
 
 }
