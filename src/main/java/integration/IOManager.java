@@ -39,14 +39,6 @@ public class IOManager {
     }
 
     public static void main(String[] args) {
-        try {
-            InputStreamReader isr = new InputStreamReader(System.in);
-            BufferedReader br = new BufferedReader(isr);
-            String name = br.readLine();
-            System.out.println(name);
-        }
-        catch (IOException ioe) {
-            System.out.println("IO Exception raised!");
-        }
+        // TODO add main console stuff here
     }
 }
