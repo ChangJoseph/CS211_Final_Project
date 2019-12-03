@@ -119,4 +119,9 @@ public class BasicJsonManager {
         return parser.parse();
     }
 
+    public void setListOfScaleAndGrades(List<List<Double>> lists) {
+        JsonGradeParser parser = new JsonGradeParser(jsonFile);
+        parser.overwrite(lists);
+    }
+
 }
