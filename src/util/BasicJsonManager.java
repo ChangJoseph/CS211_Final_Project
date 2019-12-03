@@ -1,5 +1,6 @@
 package util;
 
+import java.util.List;
 import java.io.File;
 // import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -108,6 +109,14 @@ public class BasicJsonManager {
     private String getExtensionString(String fileName) {
         String[] splitName = fileName.split("."); // Splits fileName by '.' and makes an array
         return splitName[splitName.length-1]; // Returns last element of split fileName
+    }
+
+
+    // Integration Methods
+
+    public List<List<Double>> getListOfScaleAndGrades() {
+        JsonGradeParser parser = new JsonGradeParser(jsonFile);
+        return parser.parse();
     }
 
 }
