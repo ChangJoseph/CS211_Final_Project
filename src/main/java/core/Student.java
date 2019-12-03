@@ -1,5 +1,6 @@
 package core;
 
+import exception.InvalidIDException;
 import java.util.regex.Pattern;
 import java.lang.IllegalArgumentException;
 
