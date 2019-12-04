@@ -18,6 +18,7 @@ gradle/.DS_Store
 /subprojects/docs/src/snippets/**/build
 /subprojects/internal-android-performance-testing/build-android-libs
 
+<<<<<<< HEAD
 # IDEA
 # ----
 !/.idea
@@ -42,6 +43,16 @@ gradle/.DS_Store
 /subprojects/*/out
 /.teamcity/*.iml
 /.teamcity/target
+=======
+.gradle/5.2.1/fileContent/
+
+.gradle/5.2.1/fileHashes/
+
+.gradle/5.2.1/javaCompile/
+
+# Ignore Gradle GUI config
+gradle-app.setting
+>>>>>>> master
 
 # Eclipse
 # -------
@@ -53,6 +64,7 @@ gradle/.DS_Store
 atlassian-ide-plugin.xml
 .metadata/
 
+<<<<<<< HEAD
 # NetBeans
 # --------
 .nb-gradle
@@ -62,3 +74,10 @@ atlassian-ide-plugin.xml
 # ---
 *.sw[nop]
 *.bin
+=======
+# Cache of project
+.gradletasknamecache
+*.class
+
+database/
+>>>>>>> master
