@@ -10,6 +10,12 @@ gradle/.DS_Store
 .gradle
 /build/
 
+.gradle/5.2.1/fileContent/
+
+.gradle/5.2.1/fileHashes/
+
+.gradle/5.2.1/javaCompile/
+
 # Ignore Gradle GUI config
 gradle-app.setting
 
@@ -18,3 +24,6 @@ gradle-app.setting
 
 # Cache of project
 .gradletasknamecache
+*.class
+
+database/

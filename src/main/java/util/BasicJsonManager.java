@@ -1,5 +1,9 @@
 package util;
 
+import core.Student;
+import core.StudentMagic;
+import exception.IncorrectExtensionException;
+
 import java.util.List;
 import java.io.File;
 // import java.io.FileNotFoundException;
@@ -19,13 +23,21 @@ public class BasicJsonManager {
         this(new File("./test.json"));
     }
     /**
-     * Main constructor that takes in and instantiates a file
+     * Main constructor that takes in and instantiates a file along with all the directories before it
      * @param file json file to be managed
      */
     public BasicJsonManager(File file) {
+        try {
+            file.getParentFile().mkdirs();
+            file.createNewFile();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
         // If the file extension is not .json
         if (!this.getExtensionString(file.getName()).equals("json")) {
-            throw new IllegalArgumentException(); // TODO make an exception for wrong extension type
+            System.out.println(getExtensionString(file.getName()));
+            throw new IncorrectExtensionException("File extension is not .json!");
         } 
         this.jsonFile = file;
     }
@@ -107,21 +119,24 @@ public class BasicJsonManager {
      * @return the extension name in String format
      */
     private String getExtensionString(String fileName) {
-        String[] splitName = fileName.split("."); // Splits fileName by '.' and makes an array
-        return splitName[splitName.length-1]; // Returns last element of split fileName
+        if (!fileName.contains(".")) {
+            throw new IncorrectExtensionException("File does not have an extension type.");
+        }
+
+        return fileName.substring(fileName.indexOf(".")+1); // Returns last element of split fileName
     }
 
 
     // Integration Methods
 
-    public List<List<Double>> getListOfScaleAndGrades() {
+    public StudentMagic getListOfScaleAndGrades() {
         JsonGradeParser parser = new JsonGradeParser(jsonFile);
         return parser.parse();
     }
 
-    public void setListOfScaleAndGrades(List<List<Double>> lists) {
+    public void setListOfScaleAndGrades(StudentMagic magic) {
         JsonGradeParser parser = new JsonGradeParser(jsonFile);
-        parser.overwrite(lists);
+        parser.overwrite(magic);
     }
 
 }
