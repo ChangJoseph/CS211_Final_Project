@@ -21,8 +21,8 @@ public class JsonGradeParser {
     }
 
     /**
-     * Parses the json file into 
-     * @return
+     * Parses the json file into a StudentMagic class that holds student name and their grades
+     * @return StudentMagic representation of students classes/grades
      */
     public StudentMagic parse() {
         return gson.fromJson(jsonManager.getFileContent(), StudentMagic.class);

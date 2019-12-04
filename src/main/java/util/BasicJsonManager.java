@@ -36,7 +36,7 @@ public class BasicJsonManager {
         // If the file extension is not .json
         if (!this.getExtensionString(file.getName()).equals("json")) {
             System.out.println(getExtensionString(file.getName()));
-            throw new IllegalArgumentException(); // TODO make an exception for wrong extension type
+            throw new IncorrectExtensionException("File extension is not .json!");
         } 
         this.jsonFile = file;
     }
