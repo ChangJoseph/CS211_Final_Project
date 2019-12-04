@@ -33,8 +33,8 @@ public class StudentMagic {
      * @param gmuClass value value gmu class
      * @return returns the old (if any) values associated with key
      */
-    public GMUClass addClass(GMUClass gmuClass) {
-        return classes.put(gmuClass.getClassID(),gmuClass);
+    public GMUClass addClass(String classID, GMUClass gmuClass) {
+        return classes.put(classID,gmuClass);
     }
     public GMUClass removeClass(String classID) {
         return classes.remove(classID);

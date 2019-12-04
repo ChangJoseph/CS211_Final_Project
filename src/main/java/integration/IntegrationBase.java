@@ -12,14 +12,18 @@ import java.util.List;
 
 /**
  * This class is the brain of the integration package and processes requests based on whichever UI is used
+ * Steps for UI classes, Make instance of this class, use addClass, use addGrades, use writeToJson
+ * toString will output a String representation of the json file made
  */
 public class IntegrationBase {
     private Student student;
     private StudentMagic magic;
+    JsonGradeParser parse;
 
     public IntegrationBase(String name, String id, String dob) {
         this.student = new Student(name, id, dob);
         magic = new StudentMagic(id);
+        parse = new JsonGradeParser(getFile());
     }
 
     /**
@@ -34,8 +38,8 @@ public class IntegrationBase {
      * adds a class to StudentMagic's list of classes
      * @param gmuClass gmu class itself to add
      */
-    public void addClass(GMUClass gmuClass) {
-        magic.addClass(gmuClass);
+    public void addClass(String classID, GMUClass gmuClass) {
+        magic.addClass(classID, gmuClass);
     }
     /**
      * Adds grades & scale to the instance's student's file
@@ -65,6 +69,13 @@ public class IntegrationBase {
     }
 
     /**
+     * Opposite of toString; writes current data to corresponding json file
+     */
+    public void writeToJson() {
+        parse.overwrite(magic);
+    }
+
+    /**
      * Makes sure file exists then returns the parsed json file of the current instance's class
      * @return toString representation of the class
      */
@@ -73,7 +84,6 @@ public class IntegrationBase {
         if (!getFile().exists()) {
             return "N/A";
         }
-        JsonGradeParser parse = new JsonGradeParser(getFile());
         return parse.parse().toString();
     }
 
@@ -83,9 +93,10 @@ public class IntegrationBase {
         grades.add(95);
         grades.add(49);
         Grades gradeClass = new Grades(1.0, grades);
-        GMUClass gmuClass = new GMUClass("MATH125",4);
-        base.addClass(gmuClass);
+        GMUClass gmuClass = new GMUClass(4);
+        base.addClass("MATH125",gmuClass);
         base.addGrades("MATH125",gradeClass);
+        base.writeToJson();
         System.out.println(base.toString());
     }
 }

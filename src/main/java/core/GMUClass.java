@@ -4,22 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GMUClass {
-    private String classID; // Ex: MATH125
+//    private String classID; // Ex: MATH125
     private int credit;
     private List<Grades> gradesList;
 
-    public GMUClass(String classID, int credit) {
-        this(classID, credit, new ArrayList<Grades>());
+    public GMUClass(int credit) {
+        this(credit, new ArrayList<Grades>());
     }
-    public GMUClass(String classID, int credit, List<Grades> gradesList) {
-        this.classID = classID.toLowerCase();
+    public GMUClass(int credit, List<Grades> gradesList) {
+//        this.classID = classID.toLowerCase();
         this.credit = credit;
         this.gradesList = gradesList;
     }
 
-    public String getClassID() {
-        return classID;
-    }
+//    public String getClassID() {
+//        return classID;
+//    }
     public int getCredit() {
         return credit;
     }

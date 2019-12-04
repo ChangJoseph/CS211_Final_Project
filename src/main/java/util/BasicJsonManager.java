@@ -23,11 +23,12 @@ public class BasicJsonManager {
         this(new File("./test.json"));
     }
     /**
-     * Main constructor that takes in and instantiates a file
+     * Main constructor that takes in and instantiates a file along with all the directories before it
      * @param file json file to be managed
      */
     public BasicJsonManager(File file) {
         try {
+            file.getParentFile().mkdirs();
             file.createNewFile();
         }
         catch (IOException e) {
