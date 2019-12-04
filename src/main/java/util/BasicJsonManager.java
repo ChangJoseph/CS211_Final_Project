@@ -27,6 +27,12 @@ public class BasicJsonManager {
      * @param file json file to be managed
      */
     public BasicJsonManager(File file) {
+        try {
+            file.createNewFile();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
         // If the file extension is not .json
         if (!this.getExtensionString(file.getName()).equals("json")) {
             System.out.println(getExtensionString(file.getName()));

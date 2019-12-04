@@ -10,4 +10,14 @@ public class Grades {
         this.scale = scale;
         this.grades = grades;
     }
+
+    public double getScale() {
+        return this.scale;
+    }
+    public List<Integer> getGrades() {
+        return this.grades;
+    }
+    public void addGrades(Integer value) {
+        grades.add(value);
+    }
 }
