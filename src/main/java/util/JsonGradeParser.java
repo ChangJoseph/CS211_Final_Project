@@ -28,11 +28,9 @@ public class JsonGradeParser {
         return gson.fromJson(jsonManager.getFileContent(), StudentMagic.class);
     }
 
-    // TODO write this method lol
     public void overwrite(StudentMagic magic) {
         jsonManager.addFileContent(gson.toJson(magic), false);
     }
-
     /*
     public static void main(String[] args) {
         JsonGradeParser x = new JsonGradeParser(new File(FileSystemView.getFileSystemView().getDefaultDirectory().getPath() + "/test.json"));
