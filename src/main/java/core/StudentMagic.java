@@ -4,6 +4,10 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Class holding metadata (student ID) as well as classes that the student has
+ * Mainly used for parsing/deparsing student into json or vice versa
+ */
 public class StudentMagic {
     private String studentID;
     private Map<String, GMUClass> classes;
@@ -15,6 +19,19 @@ public class StudentMagic {
 
     public GMUClass getClass(String classID) {
         return classes.get(classID);
+    }
+
+    /**
+     * sets value gmuClass in key classID
+     * @param classID key value class ID
+     * @param gmuClass value value gmu class
+     * @return returns the old (if any) values associated with key
+     */
+    public GMUClass addClass(String classID, GMUClass gmuClass) {
+        return classes.put(classID,gmuClass);
+    }
+    public GMUClass removeClass(String classID) {
+        return classes.remove(classID);
     }
 
     @Override

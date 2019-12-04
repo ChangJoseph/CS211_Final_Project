@@ -46,6 +46,11 @@ public class IntegrationBase {
     public int getHash() {
         return this.hash;
     }
+
+    /**
+     * Gets the file associated with current instance;
+     * @return project_folder/database/student_hash.json
+     */
     public File getFile() {
         return new File(System.getProperty("user.dir") + "/database/" + this.hash + ".json/");
     }
@@ -70,7 +75,7 @@ public class IntegrationBase {
         grades.add(89);
         grades.add(49);
         Grades gradeClass = new Grades(1.0, grades);
-        base.addGrades(gradeClass);
+        base.addGrades("MATH125",gradeClass);
         System.out.println(base.toString());
     }
 }
