@@ -6,8 +6,12 @@ import core.StudentMagic;
 import util.JsonGradeParser;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This class is the brain of the integration package and processes requests based on whichever UI is used
+ */
 public class IntegrationBase {
     private Student student;
     private int hash;
@@ -27,10 +31,13 @@ public class IntegrationBase {
     }
 
     /**
-     * Adds grades to the instance's student's file
+     * Adds grades & scale to the instance's student's file
+     * Appends list of grades if scale already exists in student's file
+     * @param classID the classID (ex: "MATH125") wanted to add grades to
+     * @param grades grades wanted to add to the class of specified classID
      */
-    public void addGrades(Grades grades) {
-
+    public void addGrades(String classID, Grades grades) {
+        magic.getClass(classID).addGrades(grades);
     }
 
     public Student getStudent() {
@@ -43,6 +50,10 @@ public class IntegrationBase {
         return new File(System.getProperty("user.dir") + "/database/" + this.hash + ".json/");
     }
 
+    /**
+     * Makes sure file exists then returns the parsed json file of the current instance's class
+     * @return toString representation of the class
+     */
     @Override
     public String toString() {
         if (!getFile().exists()) {
@@ -54,7 +65,12 @@ public class IntegrationBase {
 
     public static void main(String[] args) {
         IntegrationBase base = new IntegrationBase("John","jdoe","01/01/2000");
-        base.
+        List<Integer> grades = new ArrayList<Integer>();
+        grades.add(95);
+        grades.add(89);
+        grades.add(49);
+        Grades gradeClass = new Grades(1.0, grades);
+        base.addGrades(gradeClass);
         System.out.println(base.toString());
     }
 }
