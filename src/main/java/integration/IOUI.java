@@ -7,10 +7,13 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Scanner;
 
-public class IOManager {
+/**
+ * This class is not used
+ */
+public class IOUI {
     private Scanner userInput;
 
-    public IOManager() {
+    public IOUI() {
         this.userInput = new Scanner(System.in);
     }
 
