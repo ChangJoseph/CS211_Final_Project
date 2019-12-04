@@ -12,7 +12,7 @@ public class GMUClass {
         this(classID, credit, new ArrayList<Grades>());
     }
     public GMUClass(String classID, int credit, List<Grades> gradesList) {
-        this.classID = classID;
+        this.classID = classID.toLowerCase();
         this.credit = credit;
         this.gradesList = gradesList;
     }
@@ -51,4 +51,5 @@ public class GMUClass {
         }
         return sum;
     }
+
 }
