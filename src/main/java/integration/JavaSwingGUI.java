@@ -1,7 +1,9 @@
 package integration;
 
+import core.CumulativeGPACalculator;
 import core.GMUClass;
 import core.Grades;
+import core.SemesterGPACalculator;
 import exception.InvalidIDException;
 
 import javax.swing.*;
@@ -11,6 +13,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Map;
 import java.util.regex.Pattern;
 
 public class JavaSwingGUI{
@@ -26,7 +29,7 @@ public class JavaSwingGUI{
     JLabel userIDPrompt = new JLabel("Mason ID");
     JLabel userDOBPrompt = new JLabel("Date of Birth (MMDDYYYY)   ");
     JTextField userNameInput = new JTextField("John Doe");
-    JTextField userIDInput = new JTextField("JDoe1");
+    JTextField userIDInput = new JTextField("JDoe");
     JTextField userDOBInput = new JTextField("01012000");
 
     // MAIN MENU FRAME
@@ -40,19 +43,21 @@ public class JavaSwingGUI{
 
     // GRADE VIEW FRAME
     JFrame gradeView = new JFrame("GradeView");
-    JPanel gradeViewP = new JPanel();
-    JPanel gradeViewScaledP = new JPanel();
+    JPanel gradeViewP = new JPanel(); // Main menu
+    JPanel gradeViewButtonsP = new JPanel(); // Button Panel
+    JPanel gradeViewScaledP = new JPanel(); // Scaled Grades
     JLabel gradeViewScaledLabel = new JLabel();
-    JPanel gradeViewSemesterGPAP = new JPanel();
+    JPanel gradeViewSemesterGPAP = new JPanel(); // Semester GPA
     JLabel gradeViewSemesterGPALabel = new JLabel();
-    JPanel gradeViewCumulativeP = new JPanel();
+    JPanel gradeViewCumulativeP = new JPanel(); // Cumulative GPA
     JLabel gradeViewCumulativeLabel = new JLabel();
     JLabel gradesViewPrompt = new JLabel("        Here are your recorded grades. If you would like, " +
             "please select an alternative viewing option for your grades.");
     JLabel gradesViewLabel = new JLabel();
-    JButton gradesViewClassTotal = new JButton("Scaled Grades");
-    JButton gradesViewGPACalculator = new JButton("Estimated Semester GPA");
-    JButton gradesViewCumulativeGPACalculator = new JButton("Estimated Cumulative GPA");
+    JButton gradesViewMainB = new JButton("General Grades");
+    JButton gradesViewClassTotalB = new JButton("Scaled Grades");
+    JButton gradesViewGPACalculatorB = new JButton("Estimated Semester GPA");
+    JButton gradesViewCumulativeGPACalculatorB = new JButton("Estimated Cumulative GPA");
 
     // GRADE INPUT FRAME
     JFrame gradeInput = new JFrame("GradeInput");
@@ -71,8 +76,8 @@ public class JavaSwingGUI{
     //Grade
     JPanel gradeInputGradeP = new JPanel();
     JLabel gradeInputGradeClassIDPrompt = new JLabel("Class ID (Ex: \"CS211\")");
-    JLabel gradeInputGradeScalePrompt = new JLabel("Grade Scale Percentage (Ex: \".15\" for 15%)");
-    JLabel gradeInputGradeValuePrompt = new JLabel("Grade Value (Ex: \"95, 89, 49, 78\")");
+    JLabel gradeInputGradeScalePrompt = new JLabel("Grade Scale Percentage (Ex: \"0.15\" for 15%)");
+    JLabel gradeInputGradeValuePrompt = new JLabel("Grade Value (Ex: \"95/110, 0.86\")");
     JTextField gradeInputGradeClassIDField = new JTextField("CS211"); // Class ID Field
     String gradeInputPreviousGradeClassIDField;
     JTextField gradeInputGradeScaleField = new JTextField(); // Grade Scale Field
@@ -140,29 +145,50 @@ public class JavaSwingGUI{
         gradeViewContainer.add(marginPanelView, "North");
 
         // First Opening view
-        gradeViewP.setLayout(new FlowLayout());
-        gradeViewP.add(gradesViewLabel);
+        gradeViewP.setLayout(new BorderLayout());
+        gradeViewP.add(gradesViewLabel, "Center");
         gradeViewContainer.add(gradeViewP, "Center");
+        gradeViewButtonsP.setLayout(new FlowLayout());
+        gradeViewButtonsP.add(gradesViewMainB); // Button
+        gradeViewButtonsP.add(gradesViewClassTotalB); // Button
+        gradeViewButtonsP.add(gradesViewGPACalculatorB); // Button
+        gradeViewButtonsP.add(gradesViewCumulativeGPACalculatorB); // Button
+        gradeViewP.add(gradeViewButtonsP, "South");
+
         // Scaled View
-        gradeViewScaledLabel.setText(this.calculateScaled());
-        gradeViewScaledP.add(gradeViewScaledLabel);
+        gradeViewScaledP.setLayout(new BorderLayout());
+        gradeViewScaledP.add(gradeViewScaledLabel, "Center");
+
         // Semester GPA View
-        gradeViewSemesterGPALabel.setText();
-        gradeViewSemesterGPAP.add(gradeViewSemesterGPALabel);
+        gradeViewSemesterGPAP.setLayout(new BorderLayout());
+        gradeViewSemesterGPAP.add(gradeViewSemesterGPALabel, "Center");
+
         // Cumulative GPA View
-        gradeViewCumulativeLabel.setText();
-        gradeViewCumulativeP.add(gradeViewCumulativeLabel);
+        gradeViewCumulativeP.setLayout(new BorderLayout());
+        gradeViewCumulativeP.add(gradeViewCumulativeLabel, "Center");
 
         gradeView.setVisible(false);
     }
     public String calculateScaledFormatted() {
-        brain.scaledGradeAll();
+        Map<String, Double> map = brain.scaledGradeAll();
+        StringBuilder output = new StringBuilder();
+        for (Map.Entry<String, Double> entry : map.entrySet()) {
+            output.append(entry.getKey());
+            output.append(": ");
+            output.append(entry.getValue()*100);
+            output.append("%\n");
+        }
+        return "<html>"+output.toString().replaceAll("\n","<br/>")+"</html>";
     }
-    public String calculateSemesterFormatted() {
-
+    public float calculateSemesterGPA() {
+        Map<String, Double> map = brain.scaledWithGPAAll();
+        SemesterGPACalculator calc = new SemesterGPACalculator(map.values(), brain.getTotalCredits());
+        return calc.calculate();
     }
-    public String calculateCumulativeFormatted() {
-
+    public String calculateCumulativeFormatted(double prevGPA, int prevCredits) {
+        float semesterGPA = calculateSemesterGPA();
+        CumulativeGPACalculator calc = new CumulativeGPACalculator(semesterGPA, brain.getTotalCredits(), prevGPA, prevCredits);
+        return "Estimated Cumulative GPA: " + calc.calculate();
     }
     public void setupAddGrades() {
         gradeInput.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -265,26 +291,73 @@ public class JavaSwingGUI{
                 gradesViewLabel.setText("<html>" + brain.readAllGrades().replaceAll("\n","<br/>") + "</html>");
                 mainMenu.setVisible(false);
                 clearGradeViewFrame();
+                gradeView.getContentPane().add(gradeViewP, "Center");
+                gradeViewP.add(gradeViewButtonsP, "South");
+                gradeViewP.setVisible(true);
                 gradeView.setVisible(true);
             }
         });
-        gradesViewClassTotal.addActionListener(new ActionListener() { //On "Scaled Grades" click
+        gradesViewMainB.addActionListener(new ActionListener() { //On "General Grades" click
             public void actionPerformed(ActionEvent e) {
                 clearGradeViewFrame();
+                gradeView.getContentPane().add(gradeViewP, "Center");
+                gradeViewScaledLabel.setText(calculateScaledFormatted());
+                gradeViewP.add(gradeViewButtonsP, "South");
+                gradeViewP.setVisible(true);
+
+            }
+        });
+        gradesViewClassTotalB.addActionListener(new ActionListener() { //On "Scaled Grades" click
+            public void actionPerformed(ActionEvent e) {
+                clearGradeViewFrame();
+                gradeView.getContentPane().add(gradeViewScaledP, "Center");
+                gradeViewScaledLabel.setText(calculateScaledFormatted());
+                gradeViewScaledP.add(gradeViewButtonsP, "South");
                 gradeViewScaledP.setVisible(true);
 
             }
         });
-        gradesViewGPACalculator.addActionListener(new ActionListener() { //On "Estimated Semester GPA" click
+        gradesViewGPACalculatorB.addActionListener(new ActionListener() { //On "Estimated Semester GPA" click
             public void actionPerformed(ActionEvent e) {
                 clearGradeViewFrame();
+                gradeView.getContentPane().add(gradeViewSemesterGPAP, "Center");
+                gradeViewSemesterGPALabel.setText("Calculated Semester GPA: " + calculateSemesterGPA());
+                gradeViewSemesterGPAP.add(gradeViewButtonsP, "South");
                 gradeViewSemesterGPAP.setVisible(true);
 
             }
         });
-        gradesViewCumulativeGPACalculator.addActionListener(new ActionListener() { //On "Estimated Cumulative GPA" click
+        gradesViewCumulativeGPACalculatorB.addActionListener(new ActionListener() { //On "Estimated Cumulative GPA" click
             public void actionPerformed(ActionEvent e) {
                 clearGradeViewFrame();
+                gradeView.getContentPane().add(gradeViewCumulativeP, "Center");
+                boolean validInput = false;
+                String prevCumulativeGPA = "";
+                String prevCumulativeCredit = "";
+                while (!validInput) { // TODO Cleanup interface for user friendliness
+                    prevCumulativeGPA = JOptionPane.showInputDialog("What is your previous cumulative GPA?");
+                    prevCumulativeCredit = JOptionPane.showInputDialog("What is your previous credit attempts?");
+                    try {
+                        if (Pattern.matches("[0-9]+(\\.[0-9]+)?", prevCumulativeGPA) &&
+                                Pattern.matches("[0-9]+", prevCumulativeCredit)) {
+                            validInput = true;
+                        } else {
+                            JOptionPane.showMessageDialog(mainMenu, "Invalid Input!");
+                        }
+                    }
+                    catch (NullPointerException exception) {
+                        clearGradeViewFrame();
+                        gradeView.getContentPane().add(gradeViewP, "Center");
+                        gradeViewScaledLabel.setText(calculateScaledFormatted());
+                        gradeViewP.add(gradeViewButtonsP, "South");
+                        gradeViewP.setVisible(true);
+                        return;
+                    }
+                }
+                double gpa = Double.parseDouble(prevCumulativeGPA);
+                int cred = Integer.parseInt(prevCumulativeCredit);
+                gradeViewCumulativeLabel.setText(calculateCumulativeFormatted(gpa, cred));
+                gradeViewCumulativeP.add(gradeViewButtonsP, "South");
                 gradeViewCumulativeP.setVisible(true);
 
             }
@@ -307,7 +380,7 @@ public class JavaSwingGUI{
         });
 
         // This is all in "ADD GRADE/CLASS FRAME"
-        // CLASS
+        // CLASS FRAME
         gradeInputClassButton.addActionListener(new ActionListener() { // On "Class Add" click
             public void actionPerformed(ActionEvent e) {
                 gradeInput.add(gradeInputClassP, "Center");
@@ -318,7 +391,7 @@ public class JavaSwingGUI{
                 gradeInputClassP.setVisible(true);
             }
         });
-        // GRADE
+        // GRADE FRAME
         gradeInputGradeButton.addActionListener(new ActionListener() { // On "Grade Add" click
             public void actionPerformed(ActionEvent e) {
                 gradeInput.add(gradeInputGradeP, "Center");
@@ -355,14 +428,30 @@ public class JavaSwingGUI{
 //                if (gradeScale + brain.totalScales() > 1) {
 
                 // Removes unnecessary characters
-                String gradesFormatted = gradeInputGradeValueField.getText().replaceAll("[^0-9,]","");
-                String[] gradesList = gradesFormatted.split(","); // This turns input field into an int safely
-                ArrayList<Integer> gradeValues = new ArrayList<Integer>();
+                String gradesFormatted = gradeInputGradeValueField.getText().replaceAll("[^0-9,/\\.]","");
+                String[] gradesList = gradesFormatted.split(",");
+                ArrayList<Double> gradeValues = new ArrayList<Double>();
                 for (String elem : gradesList) {
-                    gradeValues.add(Integer.parseInt(elem));
+                    if (!Pattern.matches("[0-9]+(/|\\.)[0-9]+",elem)) {
+                        JOptionPane.showMessageDialog(mainMenu,"Invalid Input! Please use fraction or decimal!");
+                        return;
+                    }
+                    else if (Pattern.matches("[0-9]+/[0-9]+", elem)) { // if it uses division rather than double
+                        String[] fraction = elem.split("/");
+                        if (fraction.length < 2) {
+                            JOptionPane.showMessageDialog(mainMenu,"Invalid Fraction!");
+                            return;
+                        }
+                        gradeValues.add((double)Integer.parseInt(fraction[0]) / (double)Integer.parseInt(fraction[1]));
+                    }
+                    else {
+                        gradeValues.add(Double.parseDouble(elem));
+                    }
                 }
+
                 if (!brain.addGrades(gradeInputPreviousGradeClassIDField,new Grades(gradeScale, gradeValues))) {
                     JOptionPane.showMessageDialog(mainMenu,"Add the class first please!");
+                    return;
                 }
                 else {
                     JOptionPane.showMessageDialog(mainMenu, "Grades have been added!");

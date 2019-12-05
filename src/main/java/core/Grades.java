@@ -4,9 +4,9 @@ import java.util.List;
 
 public class Grades {
     private double scale;
-    private List<Integer> gradesList;
+    private List<Double> gradesList;
 
-    public Grades(double scale, List<Integer> gradesList) {
+    public Grades(double scale, List<Double> gradesList) {
         this.scale = scale;
         this.gradesList = gradesList;
     }
@@ -14,13 +14,13 @@ public class Grades {
     public double getScale() {
         return this.scale;
     }
-    public List<Integer> getGrades() {
+    public List<Double> getGrades() {
         return this.gradesList;
     }
-    public void addGrade(Integer value) {
+    public void addGrade(Double value) {
         gradesList.add(value);
     }
-    public void addGrades(List<Integer> listOfGrades) {
+    public void addGrades(List<Double> listOfGrades) {
         gradesList.addAll(listOfGrades);
     }
 }

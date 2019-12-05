@@ -6,15 +6,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Scale extends Calculator {
-    private List<Integer> grades;
+    private List<Double> grades;
     private float percentage;
 
-    public Scale(float percentage, List<Integer> grades) {
+    public Scale(float percentage, List<Double> grades) {
         this.setScale(percentage);
         this.grades = grades;
     }
     public Scale(float percentage) {
-        this(percentage, new ArrayList<Integer>());
+        this(percentage, new ArrayList<Double>());
     }
 
     public Scale() {
@@ -35,7 +35,7 @@ public class Scale extends Calculator {
         return percentage;
     }
 
-    public void add(int grade) throws ScaleException {
+    public void add(Double grade) throws ScaleException {
         if (grade < 0) {
             throw new ScaleException("Cannot accept grade below zero.");
         }
@@ -60,8 +60,8 @@ public class Scale extends Calculator {
             for (double i: grades) {
                 total += i;
             }
-            double calc = total/gradesSize;
-            calc *= percentage * 100;
+            total /= gradesSize;
+            double calc = total * percentage;
             calc = Math.round(calc *100.0) / 100.0;
             return (float) calc;
         }

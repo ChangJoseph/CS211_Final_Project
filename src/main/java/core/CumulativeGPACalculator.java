@@ -20,10 +20,16 @@ public class CumulativeGPACalculator<E extends String> extends Calculator<E> {
 
     @Override
     public float calculate() {
-        double currentGPA;
-        return 0f;
+        int totalCredits = currentAttemptedCreditHours + previousCumulativeCreditHours;
+        double currentUnscaledGPA = currentAddedGPA*currentAttemptedCreditHours;
+        double previousUnscaledGPA = previousCumulativeGPA*previousCumulativeCreditHours;
+        float output = (float) ( currentUnscaledGPA + previousUnscaledGPA ) / totalCredits;
+        return output;
     }
 
+    public double getGPAFromPercentage(double percentage) {
+        return percentage / 20 - 1.0;
+    }
     public String getLetterGrade(double gpa) {
         if (gpa <= 4.00) {
             return "A";

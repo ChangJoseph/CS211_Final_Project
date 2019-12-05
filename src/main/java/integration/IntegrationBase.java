@@ -71,7 +71,7 @@ public class IntegrationBase {
             for (Grades grades : entry.getValue().getGradesList()) {
                 output.append("{Scale: " + grades.getScale() + "; Values: ");
                 String fencepost = "";
-                for (Integer grade : grades.getGrades()) {
+                for (Double grade : grades.getGrades()) {
                     output.append(fencepost);
                     fencepost = ", ";
                     output.append(grade);
@@ -113,12 +113,12 @@ public class IntegrationBase {
     }
 
     /**
-     * Returns a map of classes and their scaled grade
+     * Returns a map of classes and their scaled grade by gpa and grade scales
      * @return String classID; Double scaled grade for that class
      */
     public Map<String, Double> scaledGradeAll() {
-        Map<String, Double> output = new HashMap<String, Double>();
-        for (Map.Entry<String,GMUClass> entry : magic.getClassesMap().entrySet()) {
+        Map<String, Double> output = new HashMap<>();
+        for (Map.Entry<String, GMUClass> entry : magic.getClassesMap().entrySet()) {
             GMUClass gmuClass = entry.getValue();
             double sumScaledGrade = 0;
             for (Grades grades : gmuClass.getGradesList()) {
@@ -126,10 +126,34 @@ public class IntegrationBase {
             }
             output.put(entry.getKey(), sumScaledGrade);
         }
+//        if (output == null) {
+//            return new HashMap<String, Double>();
+//        }
+        return output;
     }
     public double scaledGrade(Grades grades) {
         Scale scale = new Scale((float)grades.getScale(), grades.getGrades());
         return scale.calculate();
+    }
+
+    /**
+     * For use with getTotalCredits()
+     * @return
+     */
+    public Map<String, Double> scaledWithGPAAll() {
+        Map<String, Double> output = new HashMap<>();
+        for (Map.Entry<String, GMUClass> entry : magic.getClassesMap().entrySet()) {
+            GMUClass gmuClass = entry.getValue();
+            double sumScaledGrade = 0;
+            for (Grades grades : gmuClass.getGradesList()) {
+                sumScaledGrade += scaledGrade(grades);
+            }
+            output.put(entry.getKey(), (sumScaledGrade*100/20-1)*entry.getValue().getCredit());
+        }
+        return output;
+    }
+    public int getTotalCredits() {
+        return magic.getTotalCredits();
     }
 
     public Student getStudent() {

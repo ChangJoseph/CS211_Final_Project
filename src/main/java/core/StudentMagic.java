@@ -30,6 +30,13 @@ public class StudentMagic {
     public Map<String,GMUClass> getClassesMap() {
         return classes;
     }
+    public int getTotalCredits() {
+        int credits = 0;
+        for (GMUClass elem : classes.values()) {
+            credits += elem.getCredit();
+        }
+        return credits;
+    }
 
     /**
      * sets value gmuClass in key classID
