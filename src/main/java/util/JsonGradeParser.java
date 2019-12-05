@@ -45,6 +45,10 @@ public class JsonGradeParser {
     public void overwrite(StudentMagic magic) {
         jsonManager.addFileContent(gson.toJson(magic), false);
     }
+
+    public String getFileContent() {
+        return jsonManager.getFileContent();
+    }
     /*
     public static void main(String[] args) {
         JsonGradeParser x = new JsonGradeParser(new File(FileSystemView.getFileSystemView().getDefaultDirectory().getPath() + "/test.json"));

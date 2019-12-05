@@ -44,7 +44,7 @@ public class GMUClass {
      * Returns sum of all scales in gradesList
      * @return read above
      */
-    private double getTotalScales() {
+    public double getTotalScales() {
         double sum = 0.0;
         for (Grades x : gradesList) {
             sum += x.getScale();

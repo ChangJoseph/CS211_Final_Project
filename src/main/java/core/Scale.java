@@ -3,13 +3,18 @@ package core;
 import exception.ScaleException;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Scale extends Calculator {
-    private ArrayList<Double> grades = new ArrayList<Double>();
+    private List<Integer> grades;
     private float percentage;
 
-    public Scale(float percentage) {
+    public Scale(float percentage, List<Integer> grades) {
         this.setScale(percentage);
+        this.grades = grades;
+    }
+    public Scale(float percentage) {
+        this(percentage, new ArrayList<Integer>());
     }
 
     public Scale() {
@@ -20,7 +25,7 @@ public class Scale extends Calculator {
     public void setScale(float percentage) throws ScaleException {
         if (percentage <= 0) {
             throw new ScaleException("Can't be equal or less than zero.");
-        } 
+        }
         else {
             this.percentage = percentage;
         }
@@ -30,12 +35,12 @@ public class Scale extends Calculator {
         return percentage;
     }
 
-    public void add(double grade) throws ScaleException {
+    public void add(int grade) throws ScaleException {
         if (grade < 0) {
             throw new ScaleException("Cannot accept grade below zero.");
         }
         else {
-            grades.add(grade);  
+            grades.add(grade);
         }
     }
 
