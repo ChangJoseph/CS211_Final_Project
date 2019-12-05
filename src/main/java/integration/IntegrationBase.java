@@ -21,21 +21,34 @@ public class IntegrationBase {
     private JsonGradeParser parse;
     private boolean fullySetup;
 
+    /**
+     * This method is the first call if the default constructor is used
+     * Other methods cannot be used if this hasn't been called yet
+     * @param name name of student
+     * @param id gmu id of student
+     * @param dob date of birth of student
+     */
     public void setupInformation(String name, String id, String dob) {
+        if (fullySetup) { // Only allows first time call
+            return;
+        }
         this.student = new Student(name, id, dob);
-        magic = new StudentMagic(id);
         fullySetup = true;
         parse = new JsonGradeParser(getFile());
+        magic = parse.parse();
     }
 
+    /**
+     * Default constructor that is used only when information is not fully known
+     */
     public IntegrationBase() {
         fullySetup = false;
     }
     public IntegrationBase(String name, String id, String dob) {
         this.student = new Student(name, id, dob);
-        magic = new StudentMagic(id);
         fullySetup = true;
         parse = new JsonGradeParser(getFile());
+        magic = parse.parse();
     }
 
     /**
@@ -102,7 +115,11 @@ public class IntegrationBase {
         if (!getFile().exists()) {
             return "N/A";
         }
-        return parse.parse().toString();
+        String output = parse.parse().toString();
+        if (output != null || !output.isEmpty()) {
+            return output;
+        }
+        return "";
     }
 
     /*

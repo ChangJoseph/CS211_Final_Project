@@ -21,28 +21,33 @@ public class JavaSwingGUI{
     JLabel userIDPrompt = new JLabel("Mason ID");
     JLabel userDOBPrompt = new JLabel("Date of Birth (MMDDYYYY)   ");
     JTextField userNameInput = new JTextField("John Doe");
-    JPasswordField userIDInput = new JPasswordField("JDoe1");
-    JPasswordField userDOBInput = new JPasswordField("01012000");
+    JTextField userIDInput = new JTextField("JDoe1");
+    JTextField userDOBInput = new JTextField("01012000");
 
     JFrame mainMenu = new JFrame("Menu");
     JPanel mainMenuPromptP = new JPanel();
     JLabel mainMenuLabel = new JLabel("Select an Option");
     JPanel mainMenuButtons = new JPanel();
     JButton viewGradeB = new JButton("View Grades");
-    JButton addGradesB = new JButton("Add Grades");
+    JButton addGradesB = new JButton("Add Grades/Classes");
     JButton clearGradesB = new JButton("Clear Grades");
 
     JFrame gradeView = new JFrame("GradeView");
+    JPanel gradeViewP = new JPanel();
+    JLabel gradesViewPrompt = new JLabel("        Here are your recorded grades. If you would like, " +
+            "please select an alternative viewing option for your grades.");
+    JLabel gradesLabel = new JLabel();
 
     JFrame gradeInput = new JFrame("GradeInput");
+    JPanel gradeInputP = new JPanel();
+    JLabel gradeInputPrompt = new JLabel("Do you want to add a class or grades?");
 
-    JButton backToMainMenu = new JButton("X");
-    JPanel marginPanel = new JPanel();
+    JButton backToMainMenuView = new JButton("X");
+    JPanel marginPanelView = new JPanel();
+    JButton backToMainMenuInput = new JButton("X");
+    JPanel marginPanelInput = new JPanel();
 
     public JavaSwingGUI() {
-        marginPanel.setLayout(new BorderLayout());
-        marginPanel.add(backToMainMenu, "West");
-
 //        brain = new IntegrationBase();
         setupLoginMenu();
         setupMainMenu();
@@ -89,22 +94,43 @@ public class JavaSwingGUI{
         gradeView.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         gradeView.setSize(800,500);
         Container gradeViewContainer = gradeView.getContentPane();
-        gradeViewContainer.add(marginPanel, "North");
+
+        //  X button
+        marginPanelView.setLayout(new BorderLayout());
+        marginPanelView.add(backToMainMenuView, "West");
+        marginPanelView.add(gradesViewPrompt, "Center");
+        gradeViewContainer.add(marginPanelView, "North");
+
+        gradeViewP.setLayout(new FlowLayout());
+        gradeViewP.add(gradesLabel);
+        gradeViewContainer.add(gradeViewP, "Center");
         gradeView.setVisible(false);
     }
     public void setupAddGrades() {
         gradeInput.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         gradeInput.setSize(800,500);
-        Container gradeViewContainer = gradeView.getContentPane();
-        gradeViewContainer.add(marginPanel, "North");
+        Container gradeInputContainer = gradeInput.getContentPane();
+
+        // Margin
+        marginPanelInput.setLayout(new BorderLayout());
+        marginPanelInput.add(backToMainMenuInput, "West");
+        gradeInputP.setLayout(new FlowLayout());
+        gradeInputP.add(gradeInputPrompt);
+        marginPanelInput.add(gradeInputP, "Center");
+        gradeInputContainer.add(marginPanelInput, "North");
+
         gradeInput.setVisible(false);
     }
 
     public void setupListeners() {
-        backToMainMenu.addActionListener(new ActionListener() { // On "X" click
+        backToMainMenuView.addActionListener(new ActionListener() { // On "X" click
             public void actionPerformed(ActionEvent e) {
-                loginMenu.setVisible(false);
                 gradeView.setVisible(false);
+                mainMenu.setVisible(true);
+            }
+        });
+        backToMainMenuInput.addActionListener(new ActionListener() { // On "X" click
+            public void actionPerformed(ActionEvent e) {
                 gradeInput.setVisible(false);
                 mainMenu.setVisible(true);
             }
@@ -115,7 +141,7 @@ public class JavaSwingGUI{
                 // Login Action here
                 String name = userNameInput.getText().toLowerCase().replaceAll("[^a-z]","");
                 String id = userIDInput.getText();
-                String dob = userDOBInput.getText().replaceAll("[^0-9]",""); ;
+                String dob = userDOBInput.getText().replaceAll("[^0-9]","");
                 if (Pattern.matches("[A-Za-z]{2,}[0-9]*", id)) { // Pattern: 2 or more letters then 0 or more numbers
                     id = id.toLowerCase().replaceAll("[^a-z0-9]","");
                 }
@@ -133,6 +159,7 @@ public class JavaSwingGUI{
 
         viewGradeB.addActionListener(new ActionListener() { // On "View Grades" click
             public void actionPerformed(ActionEvent e) {
+                gradesLabel.setText(brain.toString());
                 mainMenu.setVisible(false);
                 gradeView.setVisible(true);
             }
@@ -150,12 +177,19 @@ public class JavaSwingGUI{
         });
     }
 
+    /**
+     * This code is constantly running while the ui is in effect
+     */
     public void run() {
-        while(true) {
-            // This is constantly running
-        }
+//        while(true) {
+//            // This is constantly running
+//        }
     }
 
+    /**
+     * Run this to see the whole project in action!
+     * @param args no arguments necessary
+     */
     public static void main(String args[]){
         new JavaSwingGUI();
     }
