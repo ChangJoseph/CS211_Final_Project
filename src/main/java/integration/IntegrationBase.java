@@ -18,12 +18,23 @@ import java.util.List;
 public class IntegrationBase {
     private Student student;
     private StudentMagic magic;
-    JsonGradeParser parse;
+    private JsonGradeParser parse;
+    private boolean fullySetup = false;
 
+    public void setupInformation(String name, String id, String dob) {
+        this.student = new Student(name, id, dob);
+        magic = new StudentMagic(id);
+        parse = new JsonGradeParser(getFile());
+        fullySetup = true;
+    }
+
+    public IntegrationBase() {
+    }
     public IntegrationBase(String name, String id, String dob) {
         this.student = new Student(name, id, dob);
         magic = new StudentMagic(id);
         parse = new JsonGradeParser(getFile());
+        fullySetup = true;
     }
 
     /**
@@ -87,6 +98,7 @@ public class IntegrationBase {
         return parse.parse().toString();
     }
 
+    /*
     public static void main(String[] args) {
         IntegrationBase base = new IntegrationBase("John","jdoe","01/01/2000");
         List<Integer> grades = new ArrayList<Integer>();
@@ -99,4 +111,6 @@ public class IntegrationBase {
         base.writeToJson();
         System.out.println(base.toString());
     }
+
+     */
 }
