@@ -2,11 +2,11 @@ package core;
 
 public class GPACalculator<E extends String> extends Calculator<E> {
 
-    private double percentage;
-    private String letterGrade;
+    private double currGPA;
+    private StudentMagic classes;
 
-    public GPACalculator(double percentage) {
-        this.percentage = percentage;
+    public GPACalculator(double currGPA) {
+        this.currGPA = currGPA;
     }
 
 //    @Override
@@ -15,13 +15,17 @@ public class GPACalculator<E extends String> extends Calculator<E> {
 //    }
 
 
+    /**
+     * calculates the gpa given all classes student is taking
+     * @return
+     */
     @Override
     public float calculate() {
-        return -1f;
+//        (currGPA + classesGPA) / 2;
+        return 0f;
     }
 
-    // TODO Fix float issue
-    public String calculate(boolean x) {
+    public static String floatToLetterGrade(double percentage) {
         if (percentage <= 4.00) {
             return "A";
         }
