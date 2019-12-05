@@ -46,7 +46,7 @@ public class Student {
      * Returns precise arbitrary hash of Student class based on Student id and date of birth
      */
     public int hashCode() {
-        return ( id.hashCode() + dob.hashCode() ) << 2;
+        return ( id.hashCode() << 1 + dob.hashCode() << 1 );
     }
     @Override
     public String toString() {

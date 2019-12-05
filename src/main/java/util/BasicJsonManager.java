@@ -69,6 +69,17 @@ public class BasicJsonManager {
         return "***Error***";
         
     }
+
+    /**
+     * Checks if file has stuff in it
+     * @return
+     */
+    public boolean fileHasContent() {
+        if (this.getFileContent().length() > 0) {
+            return true;
+        }
+        return false;
+    }
     /**
      * Gets current instance's file's scanner
      * @return read above

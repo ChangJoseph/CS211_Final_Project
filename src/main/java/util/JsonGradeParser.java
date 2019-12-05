@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import core.GMUClass;
 import core.Grades;
+import core.Student;
 import core.StudentMagic;
 
 import javax.swing.filechooser.FileSystemView;
@@ -14,22 +15,39 @@ import java.util.ArrayList;
 
 public class JsonGradeParser {
     private BasicJsonManager jsonManager;
+//    private StudentMagic magic;
     private Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
     public JsonGradeParser(File file) {
         jsonManager = new BasicJsonManager(file);
+//        this.magic = new StudentMagic("jdoe1");
     }
+//    public JsonGradeParser(File file, StudentMagic magic) {
+//        jsonManager = new BasicJsonManager(file);
+//        this.magic = magic;
+//        if (!jsonManager.fileHasContent()) {
+//            overwrite(this.magic);
+//        }
+//    }
 
     /**
      * Parses the json file into a StudentMagic class that holds student name and their grades
      * @return StudentMagic representation of students classes/grades
      */
     public StudentMagic parse() {
-        return gson.fromJson(jsonManager.getFileContent(), StudentMagic.class);
+        StudentMagic output = gson.fromJson(jsonManager.getFileContent(), StudentMagic.class);
+        if (output == null) {
+            return new StudentMagic("jdoe1");
+        }
+        return output;
     }
 
     public void overwrite(StudentMagic magic) {
         jsonManager.addFileContent(gson.toJson(magic), false);
+    }
+
+    public String getFileContent() {
+        return jsonManager.getFileContent();
     }
     /*
     public static void main(String[] args) {
