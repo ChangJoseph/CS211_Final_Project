@@ -19,22 +19,23 @@ public class IntegrationBase {
     private Student student;
     private StudentMagic magic;
     private JsonGradeParser parse;
-    private boolean fullySetup = false;
+    private boolean fullySetup;
 
     public void setupInformation(String name, String id, String dob) {
         this.student = new Student(name, id, dob);
         magic = new StudentMagic(id);
-        parse = new JsonGradeParser(getFile());
         fullySetup = true;
+        parse = new JsonGradeParser(getFile());
     }
 
     public IntegrationBase() {
+        fullySetup = false;
     }
     public IntegrationBase(String name, String id, String dob) {
         this.student = new Student(name, id, dob);
         magic = new StudentMagic(id);
-        parse = new JsonGradeParser(getFile());
         fullySetup = true;
+        parse = new JsonGradeParser(getFile());
     }
 
     /**
@@ -42,6 +43,7 @@ public class IntegrationBase {
      * @return read above
      */
     public List<Grades> readGrades() {
+        if (!fullySetup) { return null; }
         return null;
     }
 
@@ -50,6 +52,7 @@ public class IntegrationBase {
      * @param gmuClass gmu class itself to add
      */
     public void addClass(String classID, GMUClass gmuClass) {
+        if (!fullySetup) { return; }
         magic.addClass(classID, gmuClass);
     }
     /**
@@ -60,6 +63,7 @@ public class IntegrationBase {
      * @return returns true if successfully added; returns false if the classID does not exist in StudentMagic
      */
     public boolean addGrades(String classID, Grades grades) {
+        if (!fullySetup) { return false; }
         if (!magic.classExists(classID)) {
             return false;
         }
@@ -76,6 +80,7 @@ public class IntegrationBase {
      * @return project_folder/database/student_hash.json
      */
     public File getFile() {
+        if (!fullySetup) { return null; }
         return new File(System.getProperty("user.dir") + "/database/" + student.hashCode() + ".json/");
     }
 
@@ -83,6 +88,7 @@ public class IntegrationBase {
      * Opposite of toString; writes current data to corresponding json file
      */
     public void writeToJson() {
+        if (!fullySetup) { return; }
         parse.overwrite(magic);
     }
 
@@ -92,6 +98,7 @@ public class IntegrationBase {
      */
     @Override
     public String toString() {
+        if (!fullySetup) { return ""; }
         if (!getFile().exists()) {
             return "N/A";
         }
