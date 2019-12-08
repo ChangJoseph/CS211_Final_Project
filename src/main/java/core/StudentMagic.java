@@ -1,9 +1,6 @@
 package core;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Class holding metadata (student ID) as well as classes that the student has
@@ -27,6 +24,19 @@ public class StudentMagic {
     public GMUClass getClass(String classID) {
         return classes.get(classID);
     }
+    public Collection<GMUClass> getAllClasses() {
+        return classes.values();
+    }
+    public Map<String,GMUClass> getClassesMap() {
+        return classes;
+    }
+    public int getTotalCredits() {
+        int credits = 0;
+        for (GMUClass elem : classes.values()) {
+            credits += elem.getCredit();
+        }
+        return credits;
+    }
 
     /**
      * sets value gmuClass in key classID
@@ -38,6 +48,9 @@ public class StudentMagic {
     }
     public GMUClass removeClass(String classID) {
         return classes.remove(classID);
+    }
+    public void removeAllClasses() {
+        classes.clear();
     }
 
     @Override
