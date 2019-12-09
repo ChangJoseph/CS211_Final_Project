@@ -63,5 +63,4 @@ public class CumulativeGPACalculator<E extends String> extends Calculator<E> {
             return "F";
         }
     }
-
 }
