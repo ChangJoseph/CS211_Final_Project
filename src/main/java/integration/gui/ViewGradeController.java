@@ -6,6 +6,7 @@ import integration.IntegrationBase;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollBar;
 
@@ -19,6 +20,7 @@ public class ViewGradeController {
     @FXML ComboBox<String> viewGradeClassesComboBox;
     @FXML ListView<Double> viewGradeListView;
     @FXML ListView<String> viewGradeMetadataListView;
+    @FXML Label viewGradeLabelClassData;
     @FXML ScrollBar viewGradeScrollBar;
 
     public ViewGradeController(IntegrationBase brain) {
@@ -36,7 +38,7 @@ public class ViewGradeController {
         viewGradeMetadataListView.getItems().clear();
         for (Map.Entry<String,GMUClass> entry : brain.getClassesMap().entrySet()) {
             StringBuilder meta = new StringBuilder();
-            meta.append("ClassID: ");
+            meta.append("Scale: ");
             meta.append(entry.getKey());
             meta.append(" \tCredit: ");
             meta.append(entry.getValue().getCredit());
@@ -53,5 +55,13 @@ public class ViewGradeController {
                 viewGradeListView.getItems().add(grade);
             }
         }
+
+        String classID = viewGradeClassesComboBox.getValue();
+        StringBuilder data = new StringBuilder();
+        data.append("Class: ");
+        data.append(classID);
+        data.append(" \tCredit: ");
+        data.append(brain.getClass(classID).getCredit());
+        viewGradeLabelClassData.setText(data.toString());
     }
 }

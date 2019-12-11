@@ -4,6 +4,7 @@
 <?import javafx.scene.effect.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
    <center>
@@ -49,27 +50,51 @@
                         </Lighting>
                      </effect></ListView>
                </center>
-               <top>
-                  <ComboBox fx:id="viewGradeClassesComboBox" onAction="#comboBoxChange" prefHeight="50.0" prefWidth="200.0" promptText="Classes" BorderPane.alignment="CENTER">
-                     <effect>
-                        <Lighting diffuseConstant="2.0" specularExponent="40.0" surfaceScale="0.4">
-                           <bumpInput>
-                              <Shadow />
-                           </bumpInput>
-                           <light>
-                              <Light.Distant>
-                                 <color>
-                                    <Color red="0.545098066329956" green="0.615686297416687" blue="0.7647058963775635" />
-                                 </color>
-                              </Light.Distant>
-                           </light>
-                        </Lighting>
-                     </effect>
-                  </ComboBox>
-               </top>
                <left>
                   <ListView fx:id="viewGradeMetadataListView" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
                </left>
+               <top>
+                  <HBox prefHeight="75.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <Pane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="SOMETIMES" />
+                        <VBox>
+                           <children>
+                              <Pane VBox.vgrow="SOMETIMES" />
+                              <Label fx:id="viewGradeLabelClassData" text="Class Data" textAlignment="CENTER" VBox.vgrow="SOMETIMES">
+                                 <font>
+                                    <Font name="System Bold" size="36.0" />
+                                 </font>
+                              </Label>
+                              <Pane VBox.vgrow="SOMETIMES" />
+                           </children>
+                        </VBox>
+                        <Pane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="SOMETIMES" />
+                        <VBox>
+                           <children>
+                              <Pane prefHeight="200.0" prefWidth="200.0" VBox.vgrow="SOMETIMES" />
+                              <ComboBox fx:id="viewGradeClassesComboBox" minHeight="45.0" onAction="#comboBoxChange" prefWidth="200.0" promptText="Classes" VBox.vgrow="SOMETIMES">
+                                 <effect>
+                                    <Lighting diffuseConstant="2.0" specularExponent="40.0" surfaceScale="0.4">
+                                       <bumpInput>
+                                          <Shadow />
+                                       </bumpInput>
+                                       <light>
+                                          <Light.Distant>
+                                             <color>
+                                                <Color red="0.545098066329956" green="0.615686297416687" blue="0.7647058963775635" />
+                                             </color>
+                                          </Light.Distant>
+                                       </light>
+                                    </Lighting>
+                                 </effect>
+                              </ComboBox>
+                              <Pane prefHeight="200.0" prefWidth="200.0" VBox.vgrow="SOMETIMES" />
+                           </children>
+                        </VBox>
+                        <Pane prefWidth="100.0" />
+                     </children>
+                  </HBox>
+               </top>
             </BorderPane>
         </items>
       </SplitPane>

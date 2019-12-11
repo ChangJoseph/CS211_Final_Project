@@ -47,6 +47,15 @@ public class IntegrationBase {
     }
 
     /**
+     * Clears all grades of a class
+     * @param classID
+     * @return
+     */
+    public boolean clearGrades(String classID) {
+        magic.addClass(classID,magic.removeClass(classID));
+        return true;
+    }
+    /**
      * gets a list of grades of instance's student specified gmu class
      * @param classID class to return grades of
      * @return read above
@@ -55,12 +64,17 @@ public class IntegrationBase {
         if (!fullySetup) { return null; }
         return magic.getClass(classID).getGradesList();
     }
+    public GMUClass getClass(String classID) {
+        if (!fullySetup) { return null; }
+        return magic.getClass(classID);
+    }
 
     /**
      * Counts the total amount of grades within student's database
      * @return
      */
     public int countTotalGrades(String classID) {
+        if (!fullySetup) { return -1; }
         int total = 0;
         for (Grades gradesList : magic.getClass(classID).getGradesList()) {
             total += gradesList.getGrades().size();
