@@ -23,13 +23,11 @@ public class IOUI {
         String dobHolder;
 
         try {
-            System.out.println("What is your Full Name?: ");
-            nameHolder = userInput.nextLine();
             System.out.println("What is you ID?: ");
             idHolder = userInput.nextLine();
             System.out.println("What is your D.O.B?: ");
             dobHolder = userInput.nextLine();
-            return new Student(nameHolder, idHolder, dobHolder);
+            return new Student(idHolder, dobHolder);
         }
         catch (Exception e) {
             e.printStackTrace();
