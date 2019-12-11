@@ -42,11 +42,13 @@ public class ViewGradeController {
             meta.append(entry.getValue().getCredit());
             meta.append(" ");
             viewGradeMetadataListView.getItems().add(meta.toString());
-            
+            for (int count = 0; count < brain.countTotalGrades(viewGradeClassesComboBox.getValue())-1; count++) {
+                viewGradeMetadataListView.getItems().add("");
+            }
         }
 
         viewGradeListView.getItems().clear();
-        for (Grades gradesClass : brain.getGrades((String)viewGradeClassesComboBox.getValue())) {
+        for (Grades gradesClass : brain.getGrades(viewGradeClassesComboBox.getValue())) {
             for (double grade : gradesClass.getGrades()) {
                 viewGradeListView.getItems().add(grade);
             }

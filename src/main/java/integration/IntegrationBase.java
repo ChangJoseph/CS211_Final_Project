@@ -55,6 +55,18 @@ public class IntegrationBase {
         if (!fullySetup) { return null; }
         return magic.getClass(classID).getGradesList();
     }
+
+    /**
+     * Counts the total amount of grades within student's database
+     * @return
+     */
+    public int countTotalGrades(String classID) {
+        int total = 0;
+        for (Grades gradesList : magic.getClass(classID).getGradesList()) {
+            total += gradesList.getGrades().size();
+        }
+        return total;
+    }
     /**
      * gets a full list of grades of instance's student specified gmu class
      * @return read above
