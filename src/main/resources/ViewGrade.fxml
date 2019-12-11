@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <SplitPane dividerPositions="0.15" prefHeight="160.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <ListView prefHeight="718.0" prefWidth="378.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+               </children>
+            </AnchorPane>
+            <BorderPane prefHeight="200.0" prefWidth="200.0">
+               <right>
+                  <ScrollBar fx:id="viewGradeScrollBar" orientation="VERTICAL" prefWidth="25.0" visibleAmount="10.0" BorderPane.alignment="CENTER">
+                     <effect>
+                        <Lighting diffuseConstant="2.0" specularConstant="0.25" specularExponent="40.0" surfaceScale="0.4">
+                           <bumpInput>
+                              <Shadow />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant elevation="24.07">
+                                 <color>
+                                    <Color red="0.8745098114013672" green="0.8901960849761963" blue="0.9333333373069763" />
+                                 </color>
+                              </Light.Distant>
+                           </light>
+                        </Lighting>
+                     </effect></ScrollBar>
+               </right>
+               <center>
+                  <ListView fx:id="viewGradeListView" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                     <effect>
+                        <Lighting diffuseConstant="1.4" specularExponent="39.53" surfaceScale="0.4">
+                           <bumpInput>
+                              <Shadow />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant>
+                                 <color>
+                                    <Color red="0.9120370149612427" green="0.9618827104568481" blue="1.0" />
+                                 </color>
+                              </Light.Distant>
+                           </light>
+                        </Lighting>
+                     </effect></ListView>
+               </center>
+               <top>
+                  <ComboBox fx:id="viewGradeClassesComboBox" onAction="#comboBoxChange" prefHeight="50.0" prefWidth="200.0" promptText="Classes" BorderPane.alignment="CENTER">
+                     <effect>
+                        <Lighting diffuseConstant="2.0" specularExponent="40.0" surfaceScale="0.4">
+                           <bumpInput>
+                              <Shadow />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant>
+                                 <color>
+                                    <Color red="0.545098066329956" green="0.615686297416687" blue="0.7647058963775635" />
+                                 </color>
+                              </Light.Distant>
+                           </light>
+                        </Lighting>
+                     </effect>
+                  </ComboBox>
+               </top>
+               <left>
+                  <ListView fx:id="viewGradeMetadataListView" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+               </left>
+            </BorderPane>
+        </items>
+      </SplitPane>
+   </center>
+</BorderPane>
