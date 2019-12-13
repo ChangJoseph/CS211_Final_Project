@@ -10,14 +10,78 @@
    <center>
       <SplitPane dividerPositions="0.15" prefHeight="160.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <items>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-               <children>
-                  <ListView prefHeight="718.0" prefWidth="378.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-               </children>
-            </AnchorPane>
+            <BorderPane prefHeight="200.0" prefWidth="200.0">
+               <center>
+                  <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <Separator prefWidth="200.0" />
+                        <Pane layoutX="10.0" layoutY="10.0" VBox.vgrow="SOMETIMES" />
+                        <HBox layoutX="10.0" layoutY="103.0">
+                           <children>
+                              <Pane minWidth="15.0" HBox.hgrow="SOMETIMES" />
+                              <Button maxWidth="1.7976931348623157E308" minHeight="65.0" mnemonicParsing="false" onAction="#overview" text="Grade Overview" textAlignment="CENTER" wrapText="true" HBox.hgrow="ALWAYS">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Button>
+                              <Pane minWidth="15.0" HBox.hgrow="SOMETIMES" />
+                           </children>
+                        </HBox>
+                        <Pane VBox.vgrow="SOMETIMES" />
+                        <HBox>
+                           <children>
+                              <Pane minWidth="15.0" HBox.hgrow="SOMETIMES" />
+                              <Button maxWidth="1.7976931348623157E308" minHeight="65.0" mnemonicParsing="false" onAction="#targetGPA" text="Target GPA Calculation" textAlignment="CENTER" wrapText="true" HBox.hgrow="ALWAYS">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Button>
+                              <Pane minWidth="15.0" HBox.hgrow="SOMETIMES" />
+                           </children>
+                        </HBox>
+                        <Pane VBox.vgrow="SOMETIMES" />
+                        <HBox layoutX="10.0" layoutY="156.0">
+                           <children>
+                              <Pane minWidth="15.0" HBox.hgrow="SOMETIMES" />
+                              <Button maxWidth="1.7976931348623157E308" minHeight="65.0" mnemonicParsing="false" onAction="#estimateGPA" text="Estimate Semester GPA" textAlignment="CENTER" wrapText="true" HBox.hgrow="ALWAYS">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Button>
+                              <Pane minWidth="15.0" HBox.hgrow="SOMETIMES" />
+                           </children>
+                        </HBox>
+                        <Pane VBox.vgrow="SOMETIMES" />
+                        <HBox prefHeight="65.0">
+                           <children>
+                              <Pane minWidth="15.0" HBox.hgrow="SOMETIMES" />
+                              <Button maxWidth="1.7976931348623157E308" minHeight="65.0" mnemonicParsing="false" onAction="#cumulativeGPA" text="Estimate Cumulative GPA" textAlignment="CENTER" wrapText="true" HBox.hgrow="ALWAYS">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Button>
+                              <Pane minWidth="15.0" HBox.hgrow="SOMETIMES" />
+                           </children>
+                        </HBox>
+                        <Pane layoutX="10.0" layoutY="10.0" VBox.vgrow="SOMETIMES" />
+                     </children>
+                  </VBox>
+               </center>
+               <top>
+                  <Pane prefHeight="150.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <Label alignment="CENTER" maxHeight="150.0" maxWidth="190.0" minHeight="150.0" text="Grade Calculations Menu" textAlignment="CENTER" wrapText="true">
+                           <font>
+                              <Font name="System Bold" size="30.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+               </top>
+            </BorderPane>
             <BorderPane prefHeight="200.0" prefWidth="200.0">
                <right>
-                  <ScrollBar fx:id="viewGradeScrollBar" orientation="VERTICAL" prefWidth="25.0" visibleAmount="10.0" BorderPane.alignment="CENTER">
+                  <ScrollBar fx:id="viewGradeScrollBar" orientation="VERTICAL" prefWidth="25.0" visibleAmount="35.0" BorderPane.alignment="CENTER">
                      <effect>
                         <Lighting diffuseConstant="2.0" specularConstant="0.25" specularExponent="40.0" surfaceScale="0.4">
                            <bumpInput>
@@ -51,7 +115,7 @@
                      </effect></ListView>
                </center>
                <left>
-                  <ListView fx:id="viewGradeMetadataListView" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+                  <ListView fx:id="viewGradeMetadataListView" prefWidth="150.0" BorderPane.alignment="CENTER" />
                </left>
                <top>
                   <HBox prefHeight="75.0" prefWidth="200.0" BorderPane.alignment="CENTER">
