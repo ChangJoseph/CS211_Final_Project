@@ -80,23 +80,6 @@
                </top>
             </BorderPane>
             <BorderPane prefHeight="200.0" prefWidth="200.0">
-               <right>
-                  <ScrollBar fx:id="viewGradeScrollBar" orientation="VERTICAL" prefWidth="25.0" visibleAmount="35.0" BorderPane.alignment="CENTER">
-                     <effect>
-                        <Lighting diffuseConstant="2.0" specularConstant="0.25" specularExponent="40.0" surfaceScale="0.4">
-                           <bumpInput>
-                              <Shadow />
-                           </bumpInput>
-                           <light>
-                              <Light.Distant elevation="24.07">
-                                 <color>
-                                    <Color red="0.8745098114013672" green="0.8901960849761963" blue="0.9333333373069763" />
-                                 </color>
-                              </Light.Distant>
-                           </light>
-                        </Lighting>
-                     </effect></ScrollBar>
-               </right>
                <center>
                   <ListView fx:id="viewGradeListView" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                      <effect>
@@ -159,6 +142,26 @@
                      </children>
                   </HBox>
                </top>
+               <bottom>
+                  <HBox alignment="CENTER" BorderPane.alignment="CENTER">
+                     <children>
+                        <FlowPane>
+                           <children>
+                              <Button mnemonicParsing="false" text="Add Grade">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" text="Delete Grade" textAlignment="CENTER">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </FlowPane>
+                     </children>
+                  </HBox>
+               </bottom>
             </BorderPane>
         </items>
       </SplitPane>
