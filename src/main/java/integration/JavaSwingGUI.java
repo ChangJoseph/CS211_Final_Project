@@ -275,7 +275,7 @@ public class JavaSwingGUI{
                 else {
                     throw new InvalidIDException("Invalid ID Input");
                 }
-                brain = new IntegrationBase(name, id, dob);
+                brain = new IntegrationBase(id, dob);
 
                 // TODO Make a check that makes sure the id matches the hash, otherwise dob is wrong
 

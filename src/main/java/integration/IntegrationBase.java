@@ -4,10 +4,7 @@ import core.*;
 import util.JsonGradeParser;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * This class is the brain of the integration package and processes requests based on whichever UI is used
@@ -23,15 +20,14 @@ public class IntegrationBase {
     /**
      * This method is the first call if the default constructor is used
      * Other methods cannot be used if this hasn't been called yet
-     * @param name name of student
      * @param id gmu id of student
      * @param dob date of birth of student
      */
-    public void setupInformation(String name, String id, String dob) {
+    public void setupInformation(String id, String dob) {
         if (fullySetup) { // Only allows first time call
             return;
         }
-        this.student = new Student(name, id, dob);
+        this.student = new Student(id, dob);
         fullySetup = true;
         parse = new JsonGradeParser(getFile());
         magic = parse.parse();
@@ -43,21 +39,47 @@ public class IntegrationBase {
     public IntegrationBase() {
         fullySetup = false;
     }
-    public IntegrationBase(String name, String id, String dob) {
-        this.student = new Student(name, id, dob);
+    public IntegrationBase(String id, String dob) {
+        this.student = new Student(id, dob);
         fullySetup = true;
         parse = new JsonGradeParser(getFile());
         magic = parse.parse();
     }
 
     /**
+     * Clears all grades of a class
+     * @param classID
+     * @return
+     */
+    public boolean clearGrades(String classID) {
+        magic.addClass(classID,magic.removeClass(classID));
+        return true;
+    }
+    /**
      * gets a list of grades of instance's student specified gmu class
      * @param classID class to return grades of
      * @return read above
      */
-    public List<Grades> readGrades(String classID) {
+    public List<Grades> getGrades(String classID) {
         if (!fullySetup) { return null; }
         return magic.getClass(classID).getGradesList();
+    }
+    public GMUClass getClass(String classID) {
+        if (!fullySetup) { return null; }
+        return magic.getClass(classID);
+    }
+
+    /**
+     * Counts the total amount of grades within student's database
+     * @return
+     */
+    public int countTotalGrades(String classID) {
+        if (!fullySetup) { return -1; }
+        int total = 0;
+        for (Grades gradesList : magic.getClass(classID).getGradesList()) {
+            total += gradesList.getGrades().size();
+        }
+        return total;
     }
     /**
      * gets a full list of grades of instance's student specified gmu class
@@ -82,6 +104,19 @@ public class IntegrationBase {
         }
         return output.toString();
     }
+    public Map<String, GMUClass> getClassesMap() {
+        return magic.getClassesMap();
+    }
+
+    /**
+     * Returns true if no grades exist in the database
+     * @return read above
+     */
+    public boolean isEmpty() {
+        Map<String, GMUClass> classes = magic.getClassesMap();
+        if (classes.isEmpty()) return true;
+        return false;
+    }
     public boolean clearAllGrades() {
         magic.removeAllClasses();
         return true;
@@ -89,12 +124,23 @@ public class IntegrationBase {
 
     /**
      * adds a class to StudentMagic's list of classes
+     * @param classID the id of the class
      * @param gmuClass gmu class itself to add
      */
     public boolean addClass(String classID, GMUClass gmuClass) {
         if (!fullySetup) { return false; }
         magic.addClass(classID, gmuClass);
         return true;
+    }
+
+    /**
+     * Removes a class from specified class
+     * @param classID the class ID wanted to remove
+     * @return the GMUClass instance that was removed
+     */
+    public GMUClass removeClass(String classID) {
+        if (!fullySetup) { return null; }
+        return magic.removeClass(classID);
     }
     /**
      * Adds grades & scale to the instance's student's file
