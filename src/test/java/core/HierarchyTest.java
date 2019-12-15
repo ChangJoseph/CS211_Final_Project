@@ -9,7 +9,7 @@ public class HierarchyTest {
 
     // TODO add tests lol
     @Test(timeout=1000)
-    private void testName() {
+    private void HierarchyTest1() {
         assertEquals("",true,true);
     }
 }
