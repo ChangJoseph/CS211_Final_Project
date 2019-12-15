@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="integration.gui.LoginController">
+    <stylesheets><URL value="@login.css" /></stylesheets>
+   <top>
+      <MenuBar BorderPane.alignment="CENTER">
+        <menus>
+          <Menu mnemonicParsing="false" text="Options">
+            <items>
+              <MenuItem fx:id="loginOptionsClose" mnemonicParsing="false" onAction="#onMenuClosePress" text="Close Application" />
+            </items>
+          </Menu>
+            <Menu mnemonicParsing="false" text="Advanced">
+              <items>
+                  <MenuItem fx:id="loginDevDefaultData" mnemonicParsing="false" onAction="#onMenuDevPopulatePress" text="Populate Default Data" />
+                <MenuItem fx:id="loginDevShowDatabase" mnemonicParsing="false" onAction="#onMenuDevShowPress" text="Show Database" />
+              </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Help">
+              <items>
+                <MenuItem mnemonicParsing="false" text="Easy Guide" />
+                  <MenuItem mnemonicParsing="false" text="Contact" />
+              </items>
+            </Menu>
+        </menus>
+      </MenuBar>
+   </top>
+   <center>
+      <GridPane BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <TextField maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" opacity="0.0" prefHeight="0.0" prefWidth="0.0" />
+            <Label text="Welcome" textFill="#3b5998" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+               <font>
+                  <Font name="Arial Bold" size="64.0" />
+               </font></Label>
+            <Label layoutX="310.0" layoutY="15.0" text="Please login with your mason user id and your date of birth" textAlignment="CENTER" textFill="#8b9dc3" wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+               <font>
+                  <Font name="Arial Bold" size="27.0" />
+               </font>
+            </Label>
+            <TextField fx:id="loginFieldUserID" promptText="George Mason ID" GridPane.rowIndex="3" />
+            <TextField fx:id="loginFieldDOB" promptText="Date of Birth" GridPane.rowIndex="4" />
+         </children>
+      </GridPane>
+   </center>
+   <bottom>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <Pane prefHeight="50.0" prefWidth="200.0" />
+            <HBox maxHeight="1.7976931348623157E308" prefWidth="200.0" VBox.vgrow="ALWAYS">
+               <children>
+                  <Pane HBox.hgrow="SOMETIMES" />
+                  <Button fx:id="loginButtonMainLogin" defaultButton="true" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#onLoginButtonPress" prefWidth="350.0" text="Login" HBox.hgrow="SOMETIMES">
+                     <font>
+                        <Font name="System Bold" size="48.0" />
+                     </font>
+                     <effect>
+                        <Lighting diffuseConstant="2.0" specularConstant="0.0" specularExponent="40.0" surfaceScale="0.4">
+                           <bumpInput>
+                              <Shadow />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant>
+                                 <color>
+                                    <Color red="0.23137255012989044" green="0.3490196168422699" blue="0.5960784554481506" />
+                                 </color>
+                              </Light.Distant>
+                           </light>
+                        </Lighting>
+                     </effect>
+                  </Button>
+                  <Pane HBox.hgrow="SOMETIMES" />
+               </children>
+            </HBox>
+            <Pane prefHeight="50.0" prefWidth="200.0" />
+         </children>
+      </VBox>
+   </bottom>
+   <left>
+      <Pane prefHeight="200.0" prefWidth="350.0" BorderPane.alignment="CENTER" />
+   </left>
+   <right>
+      <Pane prefHeight="200.0" prefWidth="350.0" BorderPane.alignment="CENTER" />
+   </right>
+</BorderPane>

@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane fx:id="mainBorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" stylesheets="@mainMenu.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <MenuBar BorderPane.alignment="CENTER">
+        <menus>
+          <Menu mnemonicParsing="false" text="Options">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Log Out" />
+                  <MenuItem mnemonicParsing="false" onAction="#onMenuClosePress" text="Close Application" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Advanced">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#onMenuDevShowPress" text="Show Database" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Easy Guide" />
+                  <MenuItem mnemonicParsing="false" text="Contact" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </top>
+   <center>
+      <VBox fx:id="mainVBox" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox prefHeight="100.0">
+               <children>
+                  <Pane HBox.hgrow="SOMETIMES" />
+                  <Label fx:id="menuLabelWelcome" maxHeight="1.7976931348623157E308" text="Welcome User" textAlignment="CENTER" textFill="#3b5998" HBox.hgrow="SOMETIMES">
+                     <font>
+                        <Font name="System Bold" size="72.0" />
+                     </font>
+                  </Label>
+                  <Pane HBox.hgrow="SOMETIMES" />
+               </children>
+            </HBox>
+            <HBox layoutX="10.0" layoutY="10.0" prefHeight="75.0">
+               <children>
+                  <Pane HBox.hgrow="SOMETIMES" />
+                  <Label ellipsisString="" text="Please Select An Option" textAlignment="CENTER" textFill="#8b9dc3" HBox.hgrow="SOMETIMES">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                  </Label>
+                  <Pane HBox.hgrow="SOMETIMES" />
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="SOMETIMES">
+               <children>
+                  <Pane prefWidth="100.0" />
+                  <SplitPane dividerPositions="0.9" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" HBox.hgrow="SOMETIMES">
+                    <items>
+                        <VBox prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" scaleX="2.9" scaleY="2.9" translateX="100.0" translateY="100.0">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                                 <image>
+                                    <Image url="@img/KirbyYum.gif" />
+                                 </image>
+                              </ImageView>
+                              <Label text="View Grades" textAlignment="CENTER" textFill="#dfe3ed" translateX="45.0">
+                                 <font>
+                                    <Font name="System Bold" size="46.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                           <children>
+                              <Button fx:id="menuButtonView" ellipsisString="" mnemonicParsing="false" onAction="#onViewButtonPress" prefHeight="46.0" prefWidth="425.0" text="View" textFill="#3b5998" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                                 <effect>
+                                    <Lighting diffuseConstant="2.0" specularConstant="0.0" specularExponent="40.0" surfaceScale="0.4">
+                                       <bumpInput>
+                                          <Shadow />
+                                       </bumpInput>
+                                       <light>
+                                          <Light.Distant>
+                                             <color>
+                                                <Color red="0.545098066329956" green="0.615686297416687" blue="0.7647058963775635" />
+                                             </color>
+                                          </Light.Distant>
+                                       </light>
+                                    </Lighting>
+                                 </effect>
+                              </Button>
+                           </children>
+                        </AnchorPane>
+                    </items>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </SplitPane>
+                  <Pane prefWidth="10.0" />
+                  <SplitPane dividerPositions="0.9" layoutX="10.0" layoutY="10.0" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" HBox.hgrow="SOMETIMES">
+                     <items>
+                        <VBox prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" scaleX="2.9" scaleY="2.9" translateX="100.0" translateY="100.0">
+                                 <image>
+                                    <Image url="@img/KirbyYum.gif" />
+                                 </image>
+                              </ImageView>
+                              <Label text="Add Grades" textFill="#dfe3ee" translateX="45.0">
+                                 <font>
+                                    <Font name="System Bold" size="46.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                           <children>
+                              <Button fx:id="menuButtonAdd" ellipsisString="" mnemonicParsing="false" onAction="#onAddButtonPress" prefHeight="46.0" prefWidth="425.0" text="Add" textFill="#3b5998" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                                 <effect>
+                                    <Lighting diffuseConstant="2.0" specularConstant="0.0" specularExponent="40.0" surfaceScale="0.4">
+                                       <bumpInput>
+                                          <Shadow />
+                                       </bumpInput>
+                                       <light>
+                                          <Light.Distant>
+                                             <color>
+                                                <Color red="0.545098066329956" green="0.615686297416687" blue="0.7647058963775635" />
+                                             </color>
+                                          </Light.Distant>
+                                       </light>
+                                    </Lighting>
+                                 </effect>
+                              </Button>
+                           </children>
+                        </AnchorPane>
+                     </items>
+                  </SplitPane>
+                  <Pane prefWidth="10.0" />
+                  <SplitPane dividerPositions="0.9" layoutX="1130.0" layoutY="10.0" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" HBox.hgrow="SOMETIMES">
+                     <items>
+                        <VBox prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" scaleX="2.9" scaleY="2.9" translateX="100.0" translateY="100.0">
+                                 <image>
+                                    <Image url="@img/KirbyYum.gif" />
+                                 </image>
+                              </ImageView>
+                              <Label text="Remove Grades" textFill="#dfe3ee" translateX="5.0">
+                                 <font>
+                                    <Font name="System Bold" size="46.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                           <children>
+                              <Button fx:id="menuButtonRemove" ellipsisString="" mnemonicParsing="false" onAction="#onRemoveButtonPress" prefHeight="46.0" prefWidth="424.0" text="Remove" textFill="#3b5998" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                                 <effect>
+                                    <Lighting diffuseConstant="2.0" specularConstant="0.0" specularExponent="40.0" surfaceScale="0.4">
+                                       <bumpInput>
+                                          <Shadow />
+                                       </bumpInput>
+                                       <light>
+                                          <Light.Distant>
+                                             <color>
+                                                <Color red="0.545098066329956" green="0.615686297416687" blue="0.7647058963775635" />
+                                             </color>
+                                          </Light.Distant>
+                                       </light>
+                                    </Lighting>
+                                 </effect>
+                              </Button>
+                           </children>
+                        </AnchorPane>
+                     </items>
+                  </SplitPane>
+                  <Pane prefWidth="100.0" />
+               </children></HBox>
+            <Pane prefHeight="100.0" />
+         </children>
+      </VBox>
+   </center>
+</BorderPane>
