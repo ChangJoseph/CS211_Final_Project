@@ -1,0 +1,2 @@
+15 Dec 2019 20:06:01 GMT: Log 'PathClassLoader.txt' opened: 15 Dec 2019 20:06:01 GMT with name /Users/Hannah/Documents/GMU/CS 211/Final Project/CS211_Final_Project/src/test/java/core/PathClassLoader.txt
+15 Dec 2019 20:06:01 GMT: Constructing PathClassLoader with parent sun.misc.Launcher$AppClassLoader@18b4aac2 and path '[/Applications/drjava-gmu.jar]'
