@@ -24,6 +24,12 @@ public class CumulativeGPACalculator<E extends String> extends Calculator<E> {
         double currentUnscaledGPA = currentAddedGPA*currentAttemptedCreditHours;
         double previousUnscaledGPA = previousCumulativeGPA*previousCumulativeCreditHours;
         float output = (float) ( currentUnscaledGPA + previousUnscaledGPA ) / totalCredits;
+        if (output > 4) {
+            output = 4;
+        }
+        else if (output < 0) {
+            output = 0;
+        }
         return output;
     }
 

@@ -55,6 +55,9 @@ public class IntegrationBase {
         magic.addClass(classID,magic.removeClass(classID));
         return true;
     }
+    public void clearGrade(String gmuClass, double scale, double grade) {
+        magic.removeGrade(gmuClass, scale,grade);
+    }
     /**
      * gets a list of grades of instance's student specified gmu class
      * @param classID class to return grades of
@@ -222,6 +225,10 @@ public class IntegrationBase {
         if (!fullySetup) { return; }
         parse.overwrite(magic);
     }
+
+//    public List<Grades> {
+//
+//    }
 
     /**
      * Makes sure file exists then returns the parsed json file of the current instance's class

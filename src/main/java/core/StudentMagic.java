@@ -5,6 +5,7 @@ import java.util.*;
 /**
  * Class holding metadata (student ID) as well as classes that the student has
  * Mainly used for parsing/deparsing student into json or vice versa
+ * Methods are just variations of .add() and .remove() for each of the keys and values
  */
 public class StudentMagic {
     private String studentID;
@@ -48,6 +49,9 @@ public class StudentMagic {
     }
     public GMUClass removeClass(String classID) {
         return classes.remove(classID);
+    }
+    public void removeGrade(String gmuClass, double scale, double grade) {
+        classes.get(gmuClass).removeGrade(scale, grade);
     }
     public void removeAllClasses() {
         classes.clear();

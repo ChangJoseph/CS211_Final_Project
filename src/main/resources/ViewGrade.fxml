@@ -35,6 +35,9 @@
                                  <font>
                                     <Font size="14.0" />
                                  </font>
+                                 <graphic>
+                                    <TextField fx:id="targetGPA" maxWidth="45.0" promptText="GPA" />
+                                 </graphic>
                               </Button>
                               <Pane minWidth="15.0" HBox.hgrow="SOMETIMES" />
                            </children>
@@ -103,7 +106,7 @@
                <top>
                   <HBox prefHeight="75.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                      <children>
-                        <Pane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="SOMETIMES" />
+                        <Pane maxWidth="-Infinity" prefWidth="100.0" HBox.hgrow="SOMETIMES" />
                         <VBox>
                            <children>
                               <Pane VBox.vgrow="SOMETIMES" />
@@ -115,7 +118,7 @@
                               <Pane VBox.vgrow="SOMETIMES" />
                            </children>
                         </VBox>
-                        <Pane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="SOMETIMES" />
+                        <Pane maxWidth="1.7976931348623157E308" prefWidth="100.0" HBox.hgrow="SOMETIMES" />
                         <VBox>
                            <children>
                               <Pane prefHeight="200.0" prefWidth="200.0" VBox.vgrow="SOMETIMES" />
@@ -138,21 +141,45 @@
                               <Pane prefHeight="200.0" prefWidth="200.0" VBox.vgrow="SOMETIMES" />
                            </children>
                         </VBox>
-                        <Pane prefWidth="100.0" />
+                        <Pane prefWidth="25.0" />
+                        <VBox layoutX="693.0" layoutY="10.0">
+                           <children>
+                              <Pane VBox.vgrow="SOMETIMES" />
+                              <Button mnemonicParsing="false" onAction="#removeClasses" text="Remove Class" textAlignment="CENTER" textFill="#ff00008d" VBox.vgrow="SOMETIMES">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Button>
+                              <Pane VBox.vgrow="SOMETIMES" />
+                           </children>
+                        </VBox>
+                        <Pane layoutX="993.0" layoutY="10.0" prefWidth="100.0" />
                      </children>
                   </HBox>
                </top>
                <bottom>
                   <HBox alignment="CENTER" BorderPane.alignment="CENTER">
                      <children>
-                        <FlowPane>
+                        <FlowPane maxWidth="-Infinity" prefWidth="840.0" HBox.hgrow="SOMETIMES">
                            <children>
-                              <Button mnemonicParsing="false" text="Add Grade">
+                              <TextField fx:id="scaleText" maxHeight="1.7976931348623157E308" prefWidth="50.0" promptText="Scale">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </TextField>
+                              <TextField fx:id="gradeText" layoutX="10.0" layoutY="21.0" maxHeight="1.7976931348623157E308" prefWidth="65.0" promptText="Grade">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </TextField>
+                              <Pane prefWidth="20.0" />
+                              <Button mnemonicParsing="false" onAction="#addGradeFlow" text="Add Grade">
                                  <font>
                                     <Font size="24.0" />
                                  </font>
                               </Button>
-                              <Button mnemonicParsing="false" text="Delete Grade" textAlignment="CENTER">
+                              <Pane prefWidth="75.0" />
+                              <Button layoutX="367.0" layoutY="10.0" mnemonicParsing="false" onAction="#removeGradeFlow" text="Write to Database" textAlignment="CENTER">
                                  <font>
                                     <Font size="24.0" />
                                  </font>
@@ -166,4 +193,26 @@
         </items>
       </SplitPane>
    </center>
+   <top>
+      <MenuBar BorderPane.alignment="CENTER">
+        <menus>
+          <Menu mnemonicParsing="false" text="Options">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#onMenuClosePress" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Advanced">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#onMenuDevShowPress" text="Show Database" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+                  <MenuItem mnemonicParsing="false" onAction="#onMenuHelpQuickGuide" text="Quick Guide" />
+              <MenuItem mnemonicParsing="false" onAction="#onMenuHelpContactPress" text="Contact" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </top>
 </BorderPane>
