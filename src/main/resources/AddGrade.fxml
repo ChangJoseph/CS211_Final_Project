@@ -1,13 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            prefHeight="400.0" prefWidth="600.0">
-
-</AnchorPane>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+    <top>
+        <MenuBar BorderPane.alignment="CENTER">
+            <menus>
+                <Menu mnemonicParsing="false" text="Options">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#onMenuClosePress" text="Close" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Advanced">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#onMenuDevShowPress" text="Show Database" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#onMenuHelpContactPress" text="Contact" />
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+    </top>
+   <center>
+      <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <top>
+            <HBox prefHeight="100.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Pane HBox.hgrow="SOMETIMES" />
+                  <Label maxHeight="1.7976931348623157E308" text="Type in the class name" textAlignment="CENTER" wrapText="true" HBox.hgrow="SOMETIMES">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Pane HBox.hgrow="SOMETIMES" />
+               </children>
+            </HBox>
+         </top>
+         <center>
+            <TextArea fx:id="pasteHere" focusTraversable="false" prefHeight="200.0" prefWidth="200.0" promptText="Enter in the classID here" BorderPane.alignment="CENTER" />
+         </center>
+         <bottom>
+            <HBox prefHeight="75.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Pane HBox.hgrow="SOMETIMES" />
+                  <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addClass" prefHeight="60.0" text="Add Class" HBox.hgrow="SOMETIMES" />
+                  <Pane HBox.hgrow="SOMETIMES" />
+               </children>
+            </HBox>
+         </bottom>
+      </BorderPane>
+   </center>
+   <left>
+      <TextField maxHeight="0.0" maxWidth="0.0" minHeight="0.0" minWidth="0.0" pickOnBounds="false" prefHeight="0.0" prefWidth="0.0" BorderPane.alignment="CENTER" />
+   </left>
+</BorderPane>

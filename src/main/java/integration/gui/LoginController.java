@@ -25,6 +25,7 @@ public class LoginController {
     @FXML private TextField loginFieldUserID;
     @FXML private TextField loginFieldDOB;
 
+    // Button listener for when the "Login" button is pressed
     @FXML
     public void onLoginButtonPress(ActionEvent event) {
         event.consume();
@@ -76,12 +77,21 @@ public class LoginController {
         }
     }
 
+    /**
+     * Closes the project
+     * @param event
+     */
     @FXML
     public void onMenuClosePress(ActionEvent event) {
         event.consume();
         Stage currentStage = (Stage) loginButtonMainLogin.getScene().getWindow();
         currentStage.close();
     }
+
+    /**
+     * Populates the text fields with generic use information
+     * @param event
+     */
     @FXML
     public void onMenuDevPopulatePress(ActionEvent event) {
         loginFieldUserID.setText("JDoe");
@@ -101,6 +111,15 @@ public class LoginController {
             alert.showAndWait();
             return;
         }
+    }
+    @FXML
+    public void onMenuHelpContactPress(ActionEvent event) {
+        event.consume();
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Contact");
+        alert.setContentText("ID: JChang32@masonlive.gmu.edu");
+        alert.showAndWait();
+        return;
     }
 
     public void initialize() {

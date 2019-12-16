@@ -1,7 +1,11 @@
 package core;
 
+import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Simply a scale and the grades that go along with that scale
+ */
 public class Grades {
     private double scale;
     private List<Double> gradesList;
@@ -10,6 +14,10 @@ public class Grades {
         this.scale = scale;
         this.gradesList = gradesList;
     }
+    public Grades(double scale) {
+        this.scale = scale;
+        this.gradesList = new ArrayList<Double>();
+    }
 
     public double getScale() {
         return this.scale;
@@ -17,10 +25,15 @@ public class Grades {
     public List<Double> getGrades() {
         return this.gradesList;
     }
-    public void addGrade(Double value) {
-        gradesList.add(value);
+    public boolean removeGrade(double grade) {
+        return gradesList.remove(new Double(grade));
     }
-    public void addGrades(List<Double> listOfGrades) {
+    public Grades addGrade(Double value) {
+        gradesList.add(value);
+        return this;
+    }
+    public Grades addGrades(List<Double> listOfGrades) {
         gradesList.addAll(listOfGrades);
+        return this;
     }
 }

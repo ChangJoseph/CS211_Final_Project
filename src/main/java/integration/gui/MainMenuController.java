@@ -26,6 +26,9 @@ public class MainMenuController {
         menuLabelWelcome.setText("Welcome " + brain.getStudent().getID());
     }
 
+    /**
+     * This is button that triggers view grade panel to open
+     */
     @FXML
     public void onViewButtonPress() {
         if (brain.isEmpty()) {
@@ -48,27 +51,16 @@ public class MainMenuController {
             e.printStackTrace();
         }
     }
+
+    /**
+     * This is button that triggers add grade panel to open
+     */
     @FXML
     public void onAddButtonPress() {
         // Prepare and open new window
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/AddGrade.fxml"));
             fxmlLoader.setController(new AddGradeController(brain));
-            Parent root1 = fxmlLoader.load();
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root1));
-            stage.show();
-
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
-    }
-    @FXML
-    public void onRemoveButtonPress() {
-        // Prepare and open new window
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/RemoveGrade.fxml"));
-            fxmlLoader.setController(new RemoveGradeController(brain));
             Parent root1 = fxmlLoader.load();
             Stage stage = new Stage();
             stage.setScene(new Scene(root1));
@@ -100,5 +92,14 @@ public class MainMenuController {
             alert.showAndWait();
             return;
         }
+    }
+    @FXML
+    public void onMenuHelpContactPress(ActionEvent event) {
+        event.consume();
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Contact");
+        alert.setContentText("ID: JChang32@masonlive.gmu.edu");
+        alert.showAndWait();
+        return;
     }
 }

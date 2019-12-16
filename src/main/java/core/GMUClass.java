@@ -3,6 +3,11 @@ package core;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * GMUClass is just a class that holds the credit a class is worth and its grades
+ * the actual classID is not included because when in use with GSON, the json format becomes really ugly
+ * as a fix to it, I made a class called StudentMagic that has a map that contains a class name as key and this as value
+ */
 public class GMUClass {
 //    private String classID; // Ex: MATH125
     private int credit;
@@ -38,6 +43,15 @@ public class GMUClass {
     }
     public void removeGrades(double scale) {
 
+    }
+    public boolean removeGrade(double scale, double grade) {
+        for (Grades grades : gradesList ) {
+            if (grades.getScale() == scale) {
+                grades.removeGrade(grade);
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
