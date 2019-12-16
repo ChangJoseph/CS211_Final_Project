@@ -27,19 +27,16 @@ Our JUnit tests are located in ./test/package_name/name.java
 
 
 ## 3. Team Assignments
-We split up the work evenly relative to what we thought we could do.
-
 ### 3.1 Chang, Joseph
-Planning, Json Classes and Java Swing
+Documentation, Json Classes, Java Swing and JavaFX
 ### 3.2 Martinez, Hannah
-Test Classes, Scale Calculator and Bug Squashing
+Test Classes and Scale.java
 ### 3.3 Shin, Yeoungmin
-Brainstorming, Core Classes and Util Classes
+Brainstorming and Core Classes
 
 
 ## 4. Conclusion
-Most of our development notes are kanban style in the "Main Project" file located in the projects tab of GitHub.
 This project tackles a pretty big issue within GMUs grading evaluation, and we showed our take on how we would fix it.
 
-## 5. Use [WIP]
-If you are someone that actually wants to use this project to calculate your grades, go to the "releases" tab (below the project description; above the file explorer) and download the zip. Make sure to have a JRE installed.
+## 5. Use
+If you are someone that actually wants to use this project to calculate your grades, go to the "releases" tab (below the project description; above the file explorer) and download the zip. Make sure to have a JRE installed. *Note that the project is still in beta*
