@@ -31,7 +31,7 @@ public class CumulativeGPACalculator<E extends String> extends Calculator<E> {
         return percentage / 20 - 1.0;
     }
     public String getLetterGrade(double gpa) {
-        if (gpa <= 4.00) {
+        if (gpa >= 4.00) {
             return "A";
         }
         else if (4.00 > gpa && gpa >= 3.67) {
