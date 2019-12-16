@@ -67,6 +67,9 @@ public class IntegrationBase {
         if (!fullySetup) { return null; }
         return magic.getClass(classID).getGradesList();
     }
+    public boolean safeToAddScale(String gmuClass, double scale) {
+        return magic.getTotalScaleClass(gmuClass)+scale <= 1;
+    }
     public GMUClass getClass(String classID) {
         if (!fullySetup) { return null; }
         return magic.getClass(classID);

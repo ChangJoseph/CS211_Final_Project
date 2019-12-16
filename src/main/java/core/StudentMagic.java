@@ -38,6 +38,9 @@ public class StudentMagic {
         }
         return credits;
     }
+    public double getTotalScaleClass(String gmuClass) {
+        return getClass(gmuClass).getTotalScales();
+    }
 
     /**
      * sets value gmuClass in key classID

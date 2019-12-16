@@ -259,6 +259,28 @@ public class ViewGradeController {
             Double scaleD = Double.parseDouble(scale);
             Double gradeD = Double.parseDouble(grade);
 
+            if (scaleD <= 0 || gradeD < 0) { // Edge Case
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Error");
+                alert.setContentText("Please type in proper scale and grade");
+                alert.showAndWait();
+                return;
+            }
+            else if (scaleD > 1 || gradeD > 1) { // 1.0 scale Edge Case
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Error");
+                alert.setContentText("Please type in scale/grade in 1.0 scale");
+                alert.showAndWait();
+                return;
+            }
+            else if (!brain.safeToAddScale(viewGradeClassesComboBox.getValue(), scaleD)) { // If sum of scaled in class exceed 1.0
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Error");
+                alert.setContentText("Scale exceeds 1.0 in class");
+                alert.showAndWait();
+                return;
+            }
+
             String gmuClass = viewGradeClassesComboBox.getValue();
             brain.addGrades(gmuClass, new Grades(scaleD).addGrade(gradeD)); // Add the actual grade into the database
         }
